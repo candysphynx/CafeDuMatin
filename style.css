@@ -14,3 +14,74 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+
+.indexContainer {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("/img/The-Complete-Guide-on-Coffee-Beans-Processing.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+header {
+  background-color: #3c2a21;
+  display: flex;
+  justify-content: space-around;
+  gap: 3rem;
+  padding: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px -20px black;
+  border: 5px solid #1a120b;
+}
+
+header h1 {
+  color: #e5e5cb;
+  align-self: center;
+}
+
+.containerApp {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10rem;
+}
+
+.containerApp h2 {
+  color: #1a120b;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.stockContainer {
+  background-color: #d5cea3;
+  width: 40vw;
+  height: 40vh;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px -20px black;
+  border: 5px solid #1a120b;
+}
+
+.addProductContainer {
+  background-color: #d5cea3;
+  height: 40vh;
+  width: 40vw;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px -20px black;
+  border: 5px solid #1a120b;
+}
+
+footer {
+  background-color: #3c2a21;
+  display: flex;
+  gap: 3rem;
+  padding: 1rem;
+  margin-top: 14rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px -20px black;
+  border: 5px solid #1a120b;
+  justify-content: center;
+}
+
+footer h3 {
+  color: #e5e5cb;
+}
