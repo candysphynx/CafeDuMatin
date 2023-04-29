@@ -57,25 +57,25 @@ header h1 {
 }
 
 .stockContainer {
-  background-color: #f1e5d6;
+  background-color: #f5ebe0ab;
   width: 40vw;
   height: 60vh;
   border-radius: 5px;
   box-shadow: 0 15px 40px -20px black;
-  border: 2px solid #3c2f2f91;
+  /* border: 2px solid #3c2f2f91; */
 }
 
 .addProductContainer {
-  background-color: #f1e5d6;
+  background-color: #f5ebe0ab;
   height: 60vh;
   width: 40vw;
   border-radius: 5px;
   box-shadow: 0 15px 40px -20px black;
-  border: 2px solid #3c2f2f91;
+  /* border: 2px solid #3c2f2f91; */
 }
 
 footer {
-  background-color: #3c323260;
+  background-color: #3c323285;
   display: flex;
   gap: 3rem;
   padding: 1rem;
