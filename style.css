@@ -53,6 +53,7 @@ header h1 {
   color: #3c2f2f;
   text-align: center;
   margin-top: 1rem;
+  font-weight: 500;
 }
 
 .stockContainer {
