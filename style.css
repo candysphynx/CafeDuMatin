@@ -90,3 +90,16 @@ footer h3 {
   font-size: small;
   font-weight: 400;
 }
+
+button {
+  background-color: #c2b4a4af;
+  color: #3c2f2f;
+  border-radius: 5%;
+  border: none;
+  padding: 0.5%;
+}
+
+button:hover {
+  background-color: #3c2f2f;
+  color: #f2eadf;
+}
