@@ -1,15 +1,74 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Café de la Place</title>
-
-    <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Le Café du Matin</title>
   </head>
   <body>
-    <script src="main.js"></script>
+    <div class="indexContainer">
+      <header>
+        <img src="img/image_2023-04-28_220904359.svg" />
+        <h1>Le Café du Matin</h1>
+        <img src="img/image_2023-04-28_220904359.svg" />
+      </header>
+      <div class="containerApp">
+        <div class="stockContainer">
+          <h2>Stock</h2>
+        </div>
+        <div class="addProductContainer">
+          <h2>Création Produit</h2>
+          <form class="formProduct">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Nom de la boisson"
+            />
+            <input
+              type="number"
+              name="stock"
+              id="stock"
+              min="0"
+              placeholder="Stock"
+            />
+            <input
+              type="text"
+              name="buyingPriceHT"
+              id="buyingPriceHT"
+              placeholder="Prix d'achat HT"
+            />
+            <input
+              type="text"
+              name="sellingPriceHT"
+              id="sellingPriceHT"
+              placeholder="Prix de vente HT"
+            />
+            <select name="type" id="type">
+              <option value="chooseType">Choisissez un type de boisson</option>
+              <option value="boisson-alcoolise">Boisson alcoolisée</option>
+              <option value="boisson-non-alcoolise">
+                Boisson non alcoolisée
+              </option>
+            </select>
+            <input
+              type="text"
+              name="degres"
+              id="degres"
+              placeholder="Degrès (Boisson alcoolisée uniquement)"
+            />
+            <button type="submit" class="btnAdd">Ajouter Produit</button>
+            <button type="submit" class="editBtn">Modifier Produit</button>
+            <button type="submit" class="deleteBtn">Supprimer Produit</button>
+          </form>
+        </div>
+      </div>
+      <footer>
+        <h3>© 2023 Le Café du Matin</h3>
+      </footer>
+    </div>
+    <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
