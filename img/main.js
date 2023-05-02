@@ -1,14 +1,23 @@
 let editBtn = document.querySelector(".editBtn");
+//let editBtn = document.createElement("button");
 //editBtn.innerText = "MODIFIER"
 //stockContainer.appendChild(editBtn)
 
 let deleteBtn = document.querySelector(".deleteBtn");
+//let deleteBtn = document.createElement("button");
 //deleteBtn.innerText = "SUPPRIMER"
 //stockContainer.appendChild(deleteBtn)
 
 let ulContainer = document.querySelector(".ulContainer");
 // POUR RAJOUTER UN PRODUIT CRÉÉ À L'UL DU STOCKCONTAINER
 let li = document.createElement("li");
+
+let name = document.querySelector("#name");
+let stock = document.querySelector("#stock");
+let buyingPriceHT = document.querySelector("#buyingPriceHT");
+let sellingPriceHT = document.querySelector("#sellingPriceHt");
+let type = document.querySelector("#type");
+let degres = document.querySelector("#degres");
 
 //FonctionConstructeur POUR LES PRODUITS CRÉÉS PUIS AJOUTÉS AU STOCK
 
@@ -59,9 +68,6 @@ function supprimer() {
   deleteBtn.addEventListener("click", function () {
     if (confirm("Voulez vous supprimez ?")) {
       li.remove();
-      //SPLICE arrayStock DU LOCALSTORAGE QUAND LA FONCTION SERA PRÊTE
-      // arrayStock.splice(index, 1);
-      // localStorage.setItem("keyStock", JSON.stringify(arrayStock));
     }
   });
 }
