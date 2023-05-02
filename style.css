@@ -57,6 +57,7 @@ header {
   text-align: center;
   border-width: 0px 0px 2px 0px;
   border-style: solid;
+  border-color: #f55139;
   padding: 0 1px;
 }
 
@@ -66,6 +67,7 @@ header {
   margin-top: 25px;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
 
 h2 {
@@ -89,7 +91,7 @@ h2 {
   text-align: center;
   border-width: 0px 0px 2px 0px;
   border-style: solid;
-  border-color: #0f222d;
+  border-color: #f55139;
   padding: 0 1px;
   margin-left: auto;
   margin-right: auto;
