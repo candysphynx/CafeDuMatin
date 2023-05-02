@@ -79,10 +79,21 @@ function displayProduct(array, type) {
   });
   // On affiche productLi dans ulContainer
   ulContainer.innerHTML = li;
+  modifier(li, editBtn, deleteBtn);
+}
 
-  // ECOUTEUR D'ÉVÈNEMENT SUR LE BOUTON MODIFIER
-  editBtn.addEventListener("click", function () {
-    modifier(li, editBtn, validerBtn);
+function modifier(li, editBtn, deleteBtn) {
+  //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE nameEdit À L'INTÉRIEUR DE LA LISTE
+
+  li.innerHTML = `<input type="text" value=${li.innerValue} class="nameEdit"/>`;
+  let nameEdit = document.querySelector(".nameEdit");
+  let validerBtn = document.createElement("button");
+  validerBtn.classList.add("Valider");
+
+  li.appendChild(validerBtn);
+
+  validerBtn.addEventListener("click", function () {
+    li.innerText = nameEdit.value;
   });
 
   deleteBtn.addEventListener("click", () => {
@@ -118,11 +129,6 @@ function modifier(li, editBtn, deleteBtn) {
       li.appendChild(deleteBtn);
     }
   });
-
-  //EVENTLISTENER SUR updateInput NUMBER
-
-  //EVENTLISTENER SUR updateInput DATALIST
-
   // REMPLACEMENT DE L'ANCIEN ARRAY NON MODIFIÉ PAR CELUI QU'ON VIENT D'ÉDITER
   //render(FonctionConstructeurModifiée);
 }
@@ -142,6 +148,11 @@ function supprimer(li, deleteBtn) {
 // Exécution des fonctions
 // Lors du clic sur le bouton Ajouter Produit, appelle la fonction createProduct
 form.addEventListener("submit", createProduct);
+
+// ECOUTEUR D'ÉVÈNEMENT SUR LE BOUTON MODIFIER
+editBtn.addEventListener("click", function () {
+  modifier(li, editBtn, validerBtn);
+});
 
 // Constructor
 function Product(
