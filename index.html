@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Korova Bar</title>
   </head>
@@ -13,15 +16,69 @@
       <header>
         <img class="logo" src="./img/vache3.jpg" />
       </header>
-        <div class="addProductContainer">
-          <h2>Création Produit</h2>
+      <div class="addProductContainer">
+        <div class="titreCreation">
+          <h2>CRÉATION PRODUIT</h2>
         </div>
-        <div class="stockContainer">
-          <h2>Stock</h2>
-      <footer>
-        <h3>© 2023 Korova Bar</h3>
-      </footer>
+        <div class="inputProduit">
+          <form class="formProduct">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Nom de la boisson"
+            />
+            <input
+              type="number"
+              name="stock"
+              id="stock"
+              min="0"
+              placeholder="Stock"
+            />
+            <input
+              type="text"
+              name="buyingPriceHT"
+              id="buyingPriceHT"
+              placeholder="Prix d'achat HT"
+            />
+            <input
+              type="text"
+              name="sellingPriceHT"
+              id="sellingPriceHT"
+              placeholder="Prix de vente HT"
+            />
+            <select name="TVA" id="TVA">
+              <option value="chooseTVA">Choisissez un % de TVA</option>
+              <option value="10%">10%</option>
+              <option value="20%">20%</option>
+            </select>
+            <select name="type" id="type">
+              <option value="chooseType">Choisissez un type de boisson</option>
+              <option value="boisson-alcoolise">Boisson alcoolisée</option>
+              <option value="boisson-non-alcoolise">
+                Boisson non alcoolisée
+              </option>
+            </select>
+            <input
+              type="text"
+              name="degres"
+              id="degres"
+              placeholder="Degrès (Boisson alcoolisée)"
+            />
+            <button type="submit" class="btnAdd">Ajouter Produit</button>
+          </form>
+        </div>
+      </div>
+      <div class="stockContainer">
+        <div class="titre2">
+          <h2>STOCK</h2>
+        </div>
+        <div class="stock"></div>
+      </div>
     </div>
+    <footer>
+      <h3>© 2023 Korova Bar</h3>
+    </footer>
     <script type="text/javascript" src="main.js"></script>
   </body>
 </html>

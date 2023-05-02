@@ -41,16 +41,28 @@ header {
 }
 
 .addProductContainer {
-  display: flex;
   justify-content: center;
   background-color: #fcf4edd2;
+  align-items: center;
   margin: auto;
   margin-top: 20px;
-  height: 15vh;
+  height: 13vh;
   width: 94vw;
   border-radius: 5px;
   box-shadow: 0 15px 40px -20px black;
-  /* border: 2px solid #3c2f2f91; */
+}
+
+.titreCreation {
+  text-align: center;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  padding: 0 1px;
+}
+
+.formProduct {
+  position: relative;
+  text-align: center;
+  margin-top: 25px;
 }
 
 h2 {
@@ -60,17 +72,24 @@ h2 {
 }
 
 .stockContainer {
-  display: flex;
   position: relative;
   margin: auto;
-  justify-content: center;
   background-color: #fcf4edd2;
   margin-top: 20px;
   width: 94vw;
   height: 60vh;
   border-radius: 10px;
   box-shadow: 0 15px 40px -20px black;
-  /* border: 2px solid #3c2f2f91; */
+}
+
+.titre2 {
+  text-align: center;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: #0f222d;
+  padding: 0 1px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 footer {
@@ -91,4 +110,33 @@ footer h3 {
   color: #f2eadf;
   font-size: small;
   font-weight: 400;
+}
+
+input,
+select {
+  height: 30px;
+  width: 230px;
+  font-size: 13px;
+  border-radius: 10px;
+  text-align: center;
+  border: 2px solid #f55139;
+  margin: 0 auto;
+}
+
+.btnAdd {
+  background-color: #0f222d;
+  border-radius: 10px;
+  border: 4px #cccccc;
+  color: #ffffff;
+  text-align: center;
+  font-size: 13px;
+  padding: 5px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.btnAdd:hover {
+  background-color: #f55139;
 }
