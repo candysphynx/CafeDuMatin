@@ -79,28 +79,35 @@ function displayProduct(array, type) {
   });
   // On affiche productLi dans ulContainer
   ulContainer.innerHTML = li;
-  modifier(li, editBtn, deleteBtn);
+
+  // Je récupère tout mes boutons supprimer & edit qui ont été crée juste au dessus
+  let allDeleteButton = document.querySelectorAll(".deleteBtn");
+  let allEditButton = document.querySelectorAll(".editBtn");
+  // On commenche la boucle des boutons
+  allDeleteButton.forEach((element, index) => {
+    // Pour chaque bouton je déclenche un event qui:
+    element.addEventListener("click", () => {
+      // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
+      supprimer(li, deleteBtn);
+
+      // On raffraichit le composant render
+      displayProduct(arrayStock, "all");
+    });
+  });
+  // On commenche la boucle des boutons
+  allEditButton.forEach((element, index) => {
+    // Pour chaque bouton je déclenche un event qui:
+    element.addEventListener("click", () => {
+      // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
+      modifier(li, editBtn, deleteBtn);
+
+      // On raffraichit le composant render
+      displayProduct(arrayStock, "all");
+    });
+  });
 }
 
-function modifier(li, editBtn, deleteBtn) {
-  //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE nameEdit À L'INTÉRIEUR DE LA LISTE
-
-  li.innerHTML = `<input type="text" value=${li.innerValue} class="nameEdit"/>`;
-  let nameEdit = document.querySelector(".nameEdit");
-  let validerBtn = document.createElement("button");
-  validerBtn.classList.add("Valider");
-
-  li.appendChild(validerBtn);
-
-  validerBtn.addEventListener("click", function () {
-    li.innerText = nameEdit.value;
-  });
-
-  deleteBtn.addEventListener("click", () => {
-    supprimer(li, deleteBtn);
-  });
-}
-
+//FONCTION MODIFIER
 function modifier(li, editBtn, deleteBtn) {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
   li.innerHTML = `<input type="text" value=${li.innerValue} class="nameEdit"/>`;
@@ -123,7 +130,6 @@ function modifier(li, editBtn, deleteBtn) {
       //updateInput REMPLIE PAR USER REMPLACE LA BALISE INPUT
       li.innerText = nameEdit.value;
       li.innerValue = nameEdit.value;
-
       //REPLACEMENT DES BOUTONS DELETE ET EDIT
       li.appendChild(editBtn);
       li.appendChild(deleteBtn);
@@ -148,11 +154,6 @@ function supprimer(li, deleteBtn) {
 // Exécution des fonctions
 // Lors du clic sur le bouton Ajouter Produit, appelle la fonction createProduct
 form.addEventListener("submit", createProduct);
-
-// ECOUTEUR D'ÉVÈNEMENT SUR LE BOUTON MODIFIER
-editBtn.addEventListener("click", function () {
-  modifier(li, editBtn, validerBtn);
-});
 
 // Constructor
 function Product(
