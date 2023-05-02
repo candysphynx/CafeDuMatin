@@ -85,52 +85,56 @@ function displayProduct(array, type) {
     modifier(li, editBtn, validerBtn);
   });
 
-  function modifier(li, editBtn, deleteBtn) {
-    //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
-    li.innerHTML = `<input type="text" value=${li.innerValue} class="nameEdit"/>`;
-    let nameEdit = document.querySelector(".nameEdit");
-    let validerBtn = document.createElement("button");
-    validerBtn.classList.add("Valider");
+  deleteBtn.addEventListener("click", () => {
+    supprimer(li, deleteBtn);
+  });
+}
 
-    li.appendChild(validerBtn);
+function modifier(li, editBtn, deleteBtn) {
+  //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
+  li.innerHTML = `<input type="text" value=${li.innerValue} class="nameEdit"/>`;
+  let nameEdit = document.querySelector(".nameEdit");
+  let validerBtn = document.createElement("button");
+  validerBtn.classList.add("Valider");
 
-    validerBtn.addEventListener("click", function () {
+  li.appendChild(validerBtn);
+
+  validerBtn.addEventListener("click", function () {
+    li.innerText = nameEdit.value;
+  });
+
+  // //QUERY SUR L'INPUT POUR LE RÉCUPÉRER ET LE STOCKER DANS updateInput
+  // let updateInput = document.querySelectorAll(".updateInput");
+
+  //EVENTLISTENER SUR updateInput TEXT
+  nameEdit.addEventListener("keydown", function (eventInfo) {
+    if (eventInfo.key == "Enter") {
+      //updateInput REMPLIE PAR USER REMPLACE LA BALISE INPUT
       li.innerText = nameEdit.value;
-    });
+      li.innerValue = nameEdit.value;
 
-    // //QUERY SUR L'INPUT POUR LE RÉCUPÉRER ET LE STOCKER DANS updateInput
-    // let updateInput = document.querySelectorAll(".updateInput");
+      //REPLACEMENT DES BOUTONS DELETE ET EDIT
+      li.appendChild(editBtn);
+      li.appendChild(deleteBtn);
+    }
+  });
 
-    //EVENTLISTENER SUR updateInput TEXT
-    nameEdit.addEventListener("keydown", function (eventInfo) {
-      if (eventInfo.key == "Enter") {
-        //updateInput REMPLIE PAR USER REMPLACE LA BALISE INPUT
-        li.innerText = nameEdit.value;
-        li.innerValue = nameEdit.value;
+  //EVENTLISTENER SUR updateInput NUMBER
 
-        //REPLACEMENT DES BOUTONS DELETE ET EDIT
-        li.appendChild(editBtn);
-        li.appendChild(deleteBtn);
-      }
-    });
+  //EVENTLISTENER SUR updateInput DATALIST
 
-    //EVENTLISTENER SUR updateInput NUMBER
-
-    //EVENTLISTENER SUR updateInput DATALIST
-
-    // REMPLACEMENT DE L'ANCIEN ARRAY NON MODIFIÉ PAR CELUI QU'ON VIENT D'ÉDITER
-    //render(FonctionConstructeurModifiée);
-  }
+  // REMPLACEMENT DE L'ANCIEN ARRAY NON MODIFIÉ PAR CELUI QU'ON VIENT D'ÉDITER
+  //render(FonctionConstructeurModifiée);
 }
 
 //FONCTION SUPPRIMER
-function supprimer() {
+function supprimer(li, deleteBtn) {
   deleteBtn.addEventListener("click", function () {
     if (confirm("Voulez vous supprimez ?")) {
       li.remove();
       //SPLICE arrayStock DU LOCALSTORAGE QUAND LA FONCTION SERA PRÊTE
-      // arrayStock.splice(index, 1);
-      // localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+      arrayStock.splice(index, 1);
+      localStorage.setItem("keyStock", JSON.stringify(arrayStock));
     }
   });
 }
