@@ -135,7 +135,7 @@ function modifier(li, editBtn, deleteBtn) {
       li.appendChild(deleteBtn);
     }
   });
-  // REMPLACEMENT DE L'ANCIEN ARRAY NON MODIFIÉ PAR CELUI QU'ON VIENT D'ÉDITER
+  // REMPLACEMENT DE L'ANCIEN ARRAY NON MODIFIÉ PAR CELUI QU'ON VIENT D'ÉDITE
   //render(FonctionConstructeurModifiée);
 }
 

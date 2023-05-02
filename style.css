@@ -15,6 +15,7 @@
 
 body {
   width: 100%;
+  overflow: hidden;
 }
 
 .indexContainer {
@@ -90,11 +91,6 @@ h2 {
   padding: 0 1px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.formProduct {
-  display: flex;
-  flex-direction: column;
 }
 
 footer {
