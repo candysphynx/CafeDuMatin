@@ -4,15 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
-    <title>Le Café du Matin</title>
+    <title>Korova Bar</title>
   </head>
   <body>
     <div class="indexContainer">
       <header>
-        <img src="img/image_2023-04-28_220904359.svg" />
-        <h1>Le Café du Matin</h1>
-        <img src="img/image_2023-04-28_220904359.svg" />
+        <img class="logo" src="./img/vache3.jpg" />
       </header>
       <div class="containerApp">
         <div class="stockContainer">
@@ -59,16 +61,22 @@
               type="text"
               name="degres"
               id="degres"
-              placeholder="Degrès (Boisson alcoolisée uniquement)"
+              placeholder="Degrès (Boisson alcoolisée)"
             />
             <button type="submit" class="btnAdd">Ajouter Produit</button>
           </form>
         </div>
       </div>
-      <footer>
-        <h3>© 2023 Le Café du Matin</h3>
-      </footer>
+      <div class="stockContainer">
+        <div class="titre2">
+          <h2>STOCK</h2>
+        </div>
+        <div class="stock"></div>
+      </div>
     </div>
+    <footer>
+      <h3>© 2023 Korova Bar</h3>
+    </footer>
     <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
