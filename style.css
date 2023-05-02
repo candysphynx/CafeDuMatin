@@ -74,6 +74,11 @@ header h1 {
   /* border: 2px solid #3c2f2f91; */
 }
 
+.formProduct {
+  display: flex;
+  flex-direction: column;
+}
+
 footer {
   background-color: #3c323285;
   display: flex;
