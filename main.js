@@ -43,24 +43,23 @@ function createProduct(e) {
 
 function displayProduct(array, type) {
   // On crée une ligne vide
-  let productLi = "";
-
+  let li = "";
   // On boucle sur le tableau arrayStock
   array.forEach((element, index) => {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
-    productLi += `<li>${element.name} Stock : ${
-      element.stock
-    } Prix d'achat HT : ${element.buyingPriceHT} Prix de vente HT : ${
-      element.sellingPriceHT
-    } Marge : ${element.margeHT} Prix TTC : ${element.priceTTC}${
+    li += `<li>${element.name} Stock : ${element.stock} Prix d'achat HT : ${
+      element.buyingPriceHT
+    } Prix de vente HT : ${element.sellingPriceHT} Marge : ${
+      element.margeHT
+    } Prix TTC : ${element.priceTTC} ${
       element.type == "boisson-alcoolise" ? "🔞" : ""
     } ${
       element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
-    }<button class="deleteBtn">Supprimer</button> <button class="editBtn">Editer</button></li>`;
+    } <button class="deleteBtn">Supprimer</button> <button class="editBtn">Editer</button></li>`;
     // Fin de boucle du tableau
   });
   // On affiche productLi dans ulContainer
-  ulContainer.innerHTML = productLi;
+  ulContainer.innerHTML = li;
 }
 
 function editProduct(params) {
@@ -87,11 +86,10 @@ function Product(
 ) {
   this.name = name;
   this.stock = stock;
-  this.buyingPriceHT = buyingPriceHT;
-  this.sellingPriceHT = sellingPriceHT;
-  this.margeHT = sellingPriceHT - buyingPriceHT;
-  this.tauxTVA = parseFloat(TVA) / 100;
-  this.priceTTC = sellingPriceHT * stock * TVA;
+  this.buyingPriceHT = buyingPriceHT + "€";
+  this.sellingPriceHT = sellingPriceHT + "€";
+  this.margeHT = sellingPriceHT - buyingPriceHT + "€";
+  this.priceTTC = sellingPriceHT * (1 + TVA / 100) + "€";
   this.type = type;
   this.degres = degres + "%";
 }
