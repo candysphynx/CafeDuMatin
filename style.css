@@ -64,6 +64,8 @@ header {
   position: relative;
   text-align: center;
   margin-top: 25px;
+  display: flex;
+  flex-direction: row;
 }
 
 h2 {
