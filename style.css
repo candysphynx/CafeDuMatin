@@ -92,6 +92,11 @@ h2 {
   margin-right: auto;
 }
 
+.formProduct {
+  display: flex;
+  flex-direction: column;
+}
+
 footer {
   background-color: #0f222d;
   display: inline-block;
