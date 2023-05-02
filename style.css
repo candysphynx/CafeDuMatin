@@ -64,6 +64,8 @@ header {
   position: relative;
   text-align: center;
   margin-top: 25px;
+  display: flex;
+  flex-direction: row;
 }
 
 h2 {
@@ -91,11 +93,6 @@ h2 {
   padding: 0 1px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.formProduct {
-  display: flex;
-  flex-direction: column;
 }
 
 footer {
