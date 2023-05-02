@@ -79,6 +79,11 @@ function displayProduct(array, type) {
   });
   // On affiche productLi dans ulContainer
   ulContainer.innerHTML = li;
+
+  //ECOUTER D'ÉVÈNEMENT SUR LE BOUTON MODIFIER
+  editBtn.addEventListener("click", function () {
+    modifier();
+  });
 }
 
 //FONCTION MODIFIER
@@ -134,11 +139,6 @@ function supprimer() {
     }
   });
 }
-
-//ECOUTER D'ÉVÈNEMENT SUR LE BOUTON MODIFIER
-editBtn.addEventListener("click", function () {
-  modifier();
-});
 
 // Exécution des fonctions
 // Lors du clic sur le bouton Ajouter Produit, appelle la fonction createProduct
