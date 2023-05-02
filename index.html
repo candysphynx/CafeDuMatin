@@ -16,13 +16,11 @@
       <header>
         <img class="logo" src="./img/vache3.jpg" />
       </header>
-      <div class="containerApp">
-        <div class="stockContainer">
-          <h2>Stock</h2>
-          <ul class="ulContainer"></ul>
+      <div class="addProductContainer">
+        <div class="titreCreation">
+          <h2>CRÉATION PRODUIT</h2>
         </div>
-        <div class="addProductContainer">
-          <h2>Création Produit</h2>
+        <div class="inputProduit">
           <form class="formProduct">
             <input
               type="text"
@@ -49,7 +47,11 @@
               id="sellingPriceHT"
               placeholder="Prix de vente HT"
             />
-            <input type="text" name="TVA" id="TVA" placeholder="TVA" />
+            <select name="TVA" id="TVA">
+              <option value="chooseTVA">Choisissez un % de TVA</option>
+              <option value="10%">10%</option>
+              <option value="20%">20%</option>
+            </select>
             <select name="type" id="type">
               <option value="chooseType">Choisissez un type de boisson</option>
               <option value="boisson-alcoolise">Boisson alcoolisée</option>
