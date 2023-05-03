@@ -94,9 +94,9 @@ function displayProduct(array, type) {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
       // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
-      supprimer(li, deleteBtn);
+      supprimer(index);
 
-      // On raffraichit le composant render
+      // On raffraichit le composant displayProduct
       displayProduct(arrayStock, "all");
     });
   });
@@ -107,7 +107,7 @@ function displayProduct(array, type) {
       // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
       modifier(li, editBtn, deleteBtn);
 
-      // On raffraichit le composant render
+      // On raffraichit le composant displayProduct
       displayProduct(arrayStock, "all");
     });
   });
@@ -146,15 +146,12 @@ function modifier(li, editBtn, deleteBtn) {
 }
 
 //FONCTION SUPPRIMER
-function supprimer(li, deleteBtn) {
-  deleteBtn.addEventListener("click", function () {
-    if (confirm("Voulez vous supprimez ?")) {
-      li.remove();
-      //SPLICE arrayStock DU LOCALSTORAGE QUAND LA FONCTION SERA PRÊTE
-      arrayStock.splice(index, 1);
-      localStorage.setItem("keyStock", JSON.stringify(arrayStock));
-    }
-  });
+function supprimer(index) {
+  if (confirm("Voulez vous supprimez ?")) {
+    //SPLICE arrayStock DU LOCALSTORAGE QUAND LA FONCTION SERA PRÊTE
+    arrayStock.splice(index, 1);
+    localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+  }
 }
 
 // Exécution des fonctions
