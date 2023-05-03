@@ -25,8 +25,14 @@ let ulContainer = document.querySelector(".ulContainer");
 let arrayStock;
 
 // Tableau de produit (a récupérer dans le localStorage si existe)
-// Développé par Diogo
-arrayStock = [];
+if (localStorage.getItem("keyStock") == null) {
+  // Crée un tableau vide
+  arrayStock = [];
+} else {
+  // Récupérer le tableau stocké en string dans le localStorage
+  arrayStock = JSON.parse(localStorage.getItem("keyStock"));
+  displayProduct(arrayStock);
+}
 
 // Fonctions
 function createProduct(e) {
@@ -66,7 +72,7 @@ function displayProduct(array, type) {
   // On boucle sur le tableau arrayStock
   array.forEach((element, index) => {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
-    li += `<li>${element.name} Stock : ${element.stock} Prix d'achat HT : ${
+    li += `<li>${element.name} Prix d'achat HT : ${
       element.buyingPriceHT
     } Prix de vente HT : ${element.sellingPriceHT} Marge : ${
       element.margeHT
@@ -74,43 +80,45 @@ function displayProduct(array, type) {
       element.type == "boisson-alcoolise" ? "🔞" : ""
     } ${
       element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
-    } <button class="deleteBtn">Supprimer</button> <button class="editBtn">Editer</button></li>`;
+    } Stock : ${
+      element.stock
+    } <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button></li>`;
     // Fin de boucle du tableau
   });
-  // On affiche productLi dans ulContainer
+  // On affiche li dans ulContainer
   ulContainer.innerHTML = li;
 
   // Je récupère tout mes boutons supprimer & edit qui ont été crée juste au dessus
   let allDeleteButton = document.querySelectorAll(".deleteBtn");
   let allEditButton = document.querySelectorAll(".editBtn");
-  // On commenche la boucle des boutons
+  // On commence la boucle des boutons
   allDeleteButton.forEach((element, index) => {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
       // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
-      supprimer(li, deleteBtn);
+      supprimer(index);
 
-      // On raffraichit le composant render
+      // On raffraichit le composant displayProduct
       displayProduct(arrayStock, "all");
     });
   });
-  // On commenche la boucle des boutons
-  allEditButton.forEach((element, index) => {
+  // On commence la boucle des boutons
+  allEditButton.forEach((element, li) => {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
-      // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
-      modifier(li, editBtn, deleteBtn);
+      // Modifier à l'intérieur du tableau arrayStock l'index selectionné au moment du click
+      modifier(li);
 
-      // On raffraichit le composant render
+      // On raffraichit le composant displayProduct
       displayProduct(arrayStock, "all");
     });
   });
 }
 
 //FONCTION MODIFIER
-function modifier(li, editBtn, deleteBtn) {
+function modifier(li) {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
-  li.innerHTML = `<input type="text" value=${li.innerValue} class="nameEdit"/>`;
+  li.innerHTML = `<input type="text" value=${li.innerText} class="nameEdit"/>`;
   let nameEdit = document.querySelector(".nameEdit");
   let validerBtn = document.createElement("button");
   validerBtn.classList.add("Valider");
@@ -121,34 +129,25 @@ function modifier(li, editBtn, deleteBtn) {
     li.innerText = nameEdit.value;
   });
 
-  // //QUERY SUR L'INPUT POUR LE RÉCUPÉRER ET LE STOCKER DANS updateInput
-  // let updateInput = document.querySelectorAll(".updateInput");
-
   //EVENTLISTENER SUR updateInput TEXT
   nameEdit.addEventListener("keydown", function (eventInfo) {
     if (eventInfo.key == "Enter") {
       //updateInput REMPLIE PAR USER REMPLACE LA BALISE INPUT
       li.innerText = nameEdit.value;
-      li.innerValue = nameEdit.value;
       //REPLACEMENT DES BOUTONS DELETE ET EDIT
       li.appendChild(editBtn);
       li.appendChild(deleteBtn);
     }
   });
-  // REMPLACEMENT DE L'ANCIEN ARRAY NON MODIFIÉ PAR CELUI QU'ON VIENT D'ÉDITE
-  //render(FonctionConstructeurModifiée);
 }
 
 //FONCTION SUPPRIMER
-function supprimer(li, deleteBtn) {
-  deleteBtn.addEventListener("click", function () {
-    if (confirm("Voulez vous supprimez ?")) {
-      li.remove();
-      //SPLICE arrayStock DU LOCALSTORAGE QUAND LA FONCTION SERA PRÊTE
-      arrayStock.splice(index, 1);
-      localStorage.setItem("keyStock", JSON.stringify(arrayStock));
-    }
-  });
+function supprimer(index) {
+  if (confirm("Voulez vous supprimez ?")) {
+    //SPLICE arrayStock DU LOCALSTORAGE QUAND LA FONCTION SERA PRÊTE
+    arrayStock.splice(index, 1);
+    localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+  }
 }
 
 // Exécution des fonctions
