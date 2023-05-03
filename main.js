@@ -25,8 +25,19 @@ let ulContainer = document.querySelector(".ulContainer");
 let arrayStock;
 
 // Tableau de produit (a récupérer dans le localStorage si existe)
+<<<<<<< HEAD
 // Développé par Diogo
 arrayStock = [];
+=======
+if (localStorage.getItem("keyStock") == null) {
+  // Crée un tableau vide
+  arrayStock = [];
+} else {
+  // Récupérer le tableau stocké en string dans le localStorage
+  arrayStock = JSON.parse(localStorage.getItem("keyStock"));
+  displayProduct(arrayStock);
+}
+>>>>>>> 2738429feee6fc345259848bcf61972c4a476c79
 
 // Fonctions
 function createProduct(e) {
