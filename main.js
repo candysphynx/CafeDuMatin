@@ -90,3 +90,40 @@ editBtn.addEventListener("click", function () {
 }*/
 
 //FONCTION RANGEMENT DES ÉLÉMENTS DU STOCK PAR ORDRE ALPHABÉTIQUE
+
+//FONCTION MODIFIER
+function modifier(li) {
+  //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
+  // li.innerHTML = `<input type="text" value=${li.innerText} class="nameEdit"/>`;
+  // let nameEdit = document.getElementsByClassName(".spanName");
+  // let buyingPriceEdit = document.getElementsByClassName(".spanBuyingPrice");
+  // let sellingPriceEdit = document.getElementsByClassName(".spanSellingPrice");
+  // let typeEdit = document.getElementsByClassName(".spanTypeBoisson");
+  // let degresEdit = document.getElementsByClassName(".spanDegres");
+  // let validerBtn = document.createElement("button");
+  // validerBtn.classList.add("Valider");
+  // li.appendChild(validerBtn);
+  // validerBtn.addEventListener("click", function () {
+  //   nameEdit.innerText = nameEdit.value;
+  //   buyingPriceEdit.innerText = buyingPriceEdit.value;
+  //   sellingPriceEdit.innerText = sellingPriceEdit.value;
+  //   typeEdit.innerText = typeEdit.value;
+  //   degresEdit.innerText = degresEdit.value;
+  // });
+  // //EVENTLISTENER SUR updateInput TEXT
+  // nameEdit.addEventListener("keydown", function (eventInfo) {
+  //   if (eventInfo.key == "Enter") {
+  //     //updateInput REMPLIE PAR USER REMPLACE LA BALISE INPUT
+  //     nameEdit.innerText = nameEdit.value;
+  //     buyingPriceEdit.innerText = buyingPriceEdit.value;
+  //     sellingPriceEdit.innerText = sellingPriceEdit.value;
+  //     typeEdit.innerText = typeEdit.value;
+  //     degresEdit.innerText = degresEdit.value;
+  //     //REPLACEMENT DES BOUTONS DELETE ET EDIT
+  //     li.appendChild(editBtn);
+  //     li.appendChild(deleteBtn);
+  //   }
+  // });
+  // On raffraichit le composant displayProduct
+  // displayProduct(arrayStock, "all");
+}
