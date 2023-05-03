@@ -136,10 +136,10 @@ footer h3 {
 input,
 select {
   justify-content: space-around;
-  height: 5vh;
-  width: 10vw;
+  height: 4vh;
+  width: 11vw;
   font-family: "Krona One", sans-serif;
-  font-size: 0.4rem;
+  font-size: 0.5rem;
   border-radius: 10px;
   text-align: center;
   border: 2px solid #f55139;
@@ -152,9 +152,9 @@ select {
   font-family: "Krona One", sans-serif;
   color: #ffffff;
   text-align: center;
-  font-size: 0.4rem;
+  font-size: 0.5rem;
   padding: 8px;
-  width: 10vw;
+  width: 7vw;
   cursor: pointer;
   margin-left: 0.5rem;
 }
@@ -168,7 +168,7 @@ button {
   text-align: center;
   font-size: 0.4rem;
   padding: 8px;
-  width: 10vw;
+  width: 3vw;
   cursor: pointer;
   margin-left: 0.5rem;
 }
@@ -202,7 +202,6 @@ li:hover {
 
 .editBtn {
   float: right;
-  background-image: url(/img/edit.png);
 }
 .deleteBtn {
   float: right;
