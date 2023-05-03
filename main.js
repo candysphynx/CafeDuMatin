@@ -25,20 +25,14 @@ let ulContainer = document.querySelector(".ulContainer");
 let arrayStock;
 
 // Tableau de produit (a récupérer dans le localStorage si existe)
-addEventListener("DOMContentLoaded", () => {
-  // On récupère le localStorage en lui rendant sa forme initial (tableau) avec la méthode parse
-  let keyStock = JSON.parse(localStorage.getItem("keyStock"));
-  // Si il y'a quelque chose dans le localStorage
-  if (keyStock.length > 0) {
-    // La variable arrayStock récupère le tableau stocké dans le localStorage
-    arrayStock = keyStock;
-    // On lance l'affichage du tableau arrayStock
-    displayProduct(arrayStock);
-  } else {
-    // Sinon on initialise le tableau arrayStock à vide sans lancer l'affichage
-    arrayStock = [];
-  }
-});
+if (localStorage.getItem("keyStock") == null) {
+  // Crée un tableau vide
+  arrayStock = [];
+} else {
+  // Récupérer le tableau stocké en string dans le localStorage
+  arrayStock = JSON.parse(localStorage.getItem("keyStock"));
+  displayProduct(arrayStock);
+}
 
 // Fonctions
 function createProduct(e) {
