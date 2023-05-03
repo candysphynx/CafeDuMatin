@@ -10,11 +10,14 @@
 }
 
 .logo {
-  height: 90px;
+  height: 8vh;
+  align-items: center;
+  justify-content: center;
 }
 
 body {
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -38,32 +41,38 @@ header {
   /* border-radius: 10px; */
   box-shadow: 0 15px 40px -20px black;
   /* border: 2px solid #1a120b; */
+  height: 12vh;
 }
 
 .addProductContainer {
-  justify-content: center;
+  /* justify-content: center; */
   background-color: #fcf4edd2;
   align-items: center;
   margin: auto;
-  margin-top: 20px;
-  height: 13vh;
+  margin-top: 2%;
+  height: 16vh;
   width: 94vw;
   border-radius: 5px;
   box-shadow: 0 15px 40px -20px black;
   overflow: auto;
+  justify-content: space-evenly;
 }
 
 .titreCreation {
   text-align: center;
   border-width: 0px 0px 2px 0px;
   border-style: solid;
+  border-color: #f55139;
   padding: 0 1px;
 }
 
 .formProduct {
-  position: relative;
+  /* position: relative; */
   text-align: center;
-  margin-top: 25px;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 h2 {
@@ -73,21 +82,33 @@ h2 {
 }
 
 .stockContainer {
-  position: relative;
+  /* position: relative; */
   margin: auto;
   background-color: #fcf4edd2;
-  margin-top: 20px;
+  margin-top: 2%;
+  margin-bottom: 2%;
   width: 94vw;
-  height: 60vh;
+  height: 55%;
   border-radius: 10px;
   box-shadow: 0 15px 40px -20px black;
+  justify-content: space-evenly;
+}
+
+ul {
+  text-align: left;
+  color: #0f222d;
+  margin: 1% auto 0px 4%;
+  font-size: 0.7rem;
+  list-style-type: none;
+  align-content: center;
+  align-items: center;
 }
 
 .titre2 {
   text-align: center;
   border-width: 0px 0px 2px 0px;
   border-style: solid;
-  border-color: #0f222d;
+  border-color: #f55139;
   padding: 0 1px;
   margin-left: auto;
   margin-right: auto;
@@ -98,7 +119,7 @@ footer {
   display: inline-block;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   padding: 1rem;
   box-shadow: 0 15px 40px -20px black;
   justify-content: center;
@@ -115,10 +136,10 @@ footer h3 {
 input,
 select {
   justify-content: space-around;
-  height: 30px;
-  width: 230px;
+  height: 5vh;
+  width: 10vw;
   font-family: "Krona One", sans-serif;
-  font-size: 10px;
+  font-size: 0.4rem;
   border-radius: 10px;
   text-align: center;
   border: 2px solid #f55139;
@@ -131,13 +152,58 @@ select {
   font-family: "Krona One", sans-serif;
   color: #ffffff;
   text-align: center;
-  font-size: 10px;
+  font-size: 0.4rem;
   padding: 8px;
-  width: 130px;
+  width: 10vw;
   cursor: pointer;
   margin-left: 0.5rem;
 }
 
+button {
+  background-color: #0f222d;
+  border-radius: 10px;
+  border: 5px #cccccc;
+  font-family: "Krona One", sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-size: 0.4rem;
+  padding: 8px;
+  width: 10vw;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+button:hover {
+  background-color: #f55139;
+}
+
 .btnAdd:hover {
   background-color: #f55139;
+}
+
+li {
+  font-family: "Krona One", sans-serif;
+  font-size: 12px;
+  width: 95%;
+  background-color: whitesmoke;
+  margin-top: 10px;
+  padding: 0.7rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+li:first-child {
+  margin-top: 0;
+}
+
+li:hover {
+  background-color: #cccccc;
+}
+
+.editBtn {
+  float: right;
+  background-image: url(/img/edit.png);
+}
+.deleteBtn {
+  float: right;
 }
