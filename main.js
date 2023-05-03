@@ -85,13 +85,13 @@ function displayProduct(array, type) {
     } <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button></li>`;
     // Fin de boucle du tableau
   });
-  // On affiche productLi dans ulContainer
+  // On affiche li dans ulContainer
   ulContainer.innerHTML = li;
 
   // Je récupère tout mes boutons supprimer & edit qui ont été crée juste au dessus
   let allDeleteButton = document.querySelectorAll(".deleteBtn");
   let allEditButton = document.querySelectorAll(".editBtn");
-  // On commenche la boucle des boutons
+  // On commence la boucle des boutons
   allDeleteButton.forEach((element, index) => {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
@@ -102,12 +102,12 @@ function displayProduct(array, type) {
       displayProduct(arrayStock, "all");
     });
   });
-  // On commenche la boucle des boutons
-  allEditButton.forEach((element, index) => {
+  // On commence la boucle des boutons
+  allEditButton.forEach((element, li) => {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
-      // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
-      modifier();
+      // Modifier à l'intérieur du tableau arrayStock l'index selectionné au moment du click
+      modifier(li);
 
       // On raffraichit le composant displayProduct
       displayProduct(arrayStock, "all");
@@ -116,9 +116,9 @@ function displayProduct(array, type) {
 }
 
 //FONCTION MODIFIER
-function modifier() {
+function modifier(li) {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
-  li.innerHTML = `<input type="text" value=${li.innerValue} class="nameEdit"/>`;
+  li.innerHTML = `<input type="text" value=${li.innerText} class="nameEdit"/>`;
   let nameEdit = document.querySelector(".nameEdit");
   let validerBtn = document.createElement("button");
   validerBtn.classList.add("Valider");
@@ -134,7 +134,6 @@ function modifier() {
     if (eventInfo.key == "Enter") {
       //updateInput REMPLIE PAR USER REMPLACE LA BALISE INPUT
       li.innerText = nameEdit.value;
-      li.innerValue = nameEdit.value;
       //REPLACEMENT DES BOUTONS DELETE ET EDIT
       li.appendChild(editBtn);
       li.appendChild(deleteBtn);
