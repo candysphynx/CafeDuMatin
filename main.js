@@ -72,17 +72,17 @@ function displayProduct(array, type) {
   // On boucle sur le tableau arrayStock
   array.forEach((element, index) => {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
-    li += `<li>${
-      element.name
-    } <input type="number" name="stock" min="0" value="${
-      element.stock
-    }"/> Prix d'achat HT : ${element.buyingPriceHT} Prix de vente HT : ${
-      element.sellingPriceHT
-    } Marge : ${element.margeHT} Prix TTC : ${element.priceTTC} ${
+    li += `<li>${element.name} Prix d'achat HT : ${
+      element.buyingPriceHT
+    } Prix de vente HT : ${element.sellingPriceHT} Marge : ${
+      element.margeHT
+    } Prix TTC : ${element.priceTTC} ${
       element.type == "boisson-alcoolise" ? "🔞" : ""
     } ${
       element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
-    } <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button></li>`;
+    } <input type="number" name="stock" min="0" value="${
+      element.stock
+    }"/> <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button></li>`;
     // Fin de boucle du tableau
   });
   // On affiche li dans ulContainer
