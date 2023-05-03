@@ -171,6 +171,10 @@ button {
   margin-left: 0.5rem;
 }
 
+button:hover {
+  background-color: #f55139;
+}
+
 .btnAdd:hover {
   background-color: #f55139;
 }
