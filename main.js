@@ -71,23 +71,15 @@ editBtn.addEventListener("click", function () {
   modifier();
 });
 
-//FONCTION CHANGER LA COULEUR SELON SI LA BOISSON EST ALCOOLISÉE OU NON
-/* function colorAlcool(li) {
-    switch (alcool.value) {
-        // Si la valeur de l'input alcool est true
-        case "true":
-            // On colore l'élément (juste son nom ?) en rouge
-            li.style.color = "red";
-            break;
-        // Si la valeur de l'input alcool est false
-        case "false":
-            // On colore l'élément (juste son nom ?) en bleu
-            li.style.color = "blue";
-            break;
-        default:
-            break;
-    }
-}*/
+//FONCTION CHANGER LA COULEUR SELON NIVEAU DU STOCK
+
+function colorStock(li) {
+  if (stock < 5) {
+    li.style.color = "red";
+  } else {
+    li.style.color = "blue";
+  }
+}
 
 //FONCTION RANGEMENT DES ÉLÉMENTS DU STOCK PAR ORDRE ALPHABÉTIQUE
 
