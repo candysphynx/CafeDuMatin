@@ -74,7 +74,7 @@ function displayProduct(array, type) {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
     li += `<li>${
       element.name
-    } Stock :<input type="number" name="stock" min="0" value="${
+    } <input type="number" name="stock" min="0" value="${
       element.stock
     }"/> Prix d'achat HT : ${element.buyingPriceHT} Prix de vente HT : ${
       element.sellingPriceHT
