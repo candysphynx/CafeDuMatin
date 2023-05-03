@@ -80,7 +80,7 @@ function displayProduct(array, type) {
       element.type == "boisson-alcoolise" ? "🔞" : ""
     } ${
       element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
-    } <button class="deleteBtn">Supprimer</button> <button class="editBtn">Editer</button></li>`;
+    } <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button></li>`;
     // Fin de boucle du tableau
   });
   // On affiche productLi dans ulContainer
@@ -127,9 +127,6 @@ function modifier(li, editBtn, deleteBtn) {
     li.innerText = nameEdit.value;
   });
 
-  // //QUERY SUR L'INPUT POUR LE RÉCUPÉRER ET LE STOCKER DANS updateInput
-  // let updateInput = document.querySelectorAll(".updateInput");
-
   //EVENTLISTENER SUR updateInput TEXT
   nameEdit.addEventListener("keydown", function (eventInfo) {
     if (eventInfo.key == "Enter") {
@@ -141,8 +138,6 @@ function modifier(li, editBtn, deleteBtn) {
       li.appendChild(deleteBtn);
     }
   });
-  // REMPLACEMENT DE L'ANCIEN ARRAY NON MODIFIÉ PAR CELUI QU'ON VIENT D'ÉDITER
-  //render(FonctionConstructeurModifiée);
 }
 
 //FONCTION SUPPRIMER
