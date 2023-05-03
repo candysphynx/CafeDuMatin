@@ -10,7 +10,9 @@
 }
 
 .logo {
-  height: 60px;
+  height: 8vh;
+  align-items: center;
+  justify-content: center;
 }
 
 body {
