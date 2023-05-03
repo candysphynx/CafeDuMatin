@@ -136,10 +136,10 @@ footer h3 {
 input,
 select {
   justify-content: space-around;
-  height: 4vh;
-  width: 11vw;
+  height: 3vh;
+  width: 12vw;
   font-family: "Krona One", sans-serif;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   border-radius: 10px;
   text-align: center;
   border: 2px solid #f55139;
@@ -152,9 +152,9 @@ select {
   font-family: "Krona One", sans-serif;
   color: #ffffff;
   text-align: center;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   padding: 8px;
-  width: 7vw;
+  width: 6vw;
   cursor: pointer;
   margin-left: 0.5rem;
 }
