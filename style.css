@@ -97,9 +97,11 @@ h2 {
 ul {
   text-align: left;
   color: #0f222d;
-  margin-left: 2%;
-  margin-top: 1%;
+  margin: 1% auto 0px 4%;
   font-size: 0.7rem;
+  list-style-type: none;
+  align-content: center;
+  align-items: center;
 }
 
 .titre2 {
@@ -177,4 +179,31 @@ button:hover {
 
 .btnAdd:hover {
   background-color: #f55139;
+}
+
+li {
+  font-family: "Krona One", sans-serif;
+  font-size: 12px;
+  width: 95%;
+  background-color: whitesmoke;
+  margin-top: 10px;
+  padding: 0.7rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+li:first-child {
+  margin-top: 0;
+}
+
+li:hover {
+  background-color: #cccccc;
+}
+
+.editBtn {
+  float: right;
+  background-image: url(/img/edit.png);
+}
+.deleteBtn {
+  float: right;
 }
