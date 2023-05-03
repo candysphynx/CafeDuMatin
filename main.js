@@ -72,11 +72,13 @@ function displayProduct(array, type) {
   // On boucle sur le tableau arrayStock
   array.forEach((element, index) => {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
-    li += `<li>${element.name} Stock : ${element.stock} Prix d'achat HT : ${
-      element.buyingPriceHT
-    } Prix de vente HT : ${element.sellingPriceHT} Marge : ${
-      element.margeHT
-    } Prix TTC : ${element.priceTTC} ${
+    li += `<li>${
+      element.name
+    } Stock :<input type="number" name="stock" min="0" value="${
+      element.stock
+    }"/> Prix d'achat HT : ${element.buyingPriceHT} Prix de vente HT : ${
+      element.sellingPriceHT
+    } Marge : ${element.margeHT} Prix TTC : ${element.priceTTC} ${
       element.type == "boisson-alcoolise" ? "🔞" : ""
     } ${
       element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
@@ -105,7 +107,7 @@ function displayProduct(array, type) {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
       // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
-      modifier(li, editBtn, deleteBtn);
+      modifier();
 
       // On raffraichit le composant displayProduct
       displayProduct(arrayStock, "all");
@@ -114,7 +116,7 @@ function displayProduct(array, type) {
 }
 
 //FONCTION MODIFIER
-function modifier(li, editBtn, deleteBtn) {
+function modifier() {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
   li.innerHTML = `<input type="text" value=${li.innerValue} class="nameEdit"/>`;
   let nameEdit = document.querySelector(".nameEdit");
