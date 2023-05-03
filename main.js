@@ -25,20 +25,14 @@ let ulContainer = document.querySelector(".ulContainer");
 let arrayStock;
 
 // Tableau de produit (a récupérer dans le localStorage si existe)
-addEventListener("DOMContentLoaded", () => {
-  // On récupère le localStorage en lui rendant sa forme initial (tableau) avec la méthode parse
-  let keyStock = JSON.parse(localStorage.getItem("keyStock"));
-  // Si il y'a quelque chose dans le localStorage
-  if (keyStock.length > 0) {
-    // La variable arrayStock récupère le tableau stocké dans le localStorage
-    arrayStock = keyStock;
-    // On lance l'affichage du tableau arrayStock
-    displayProduct(arrayStock);
-  } else {
-    // Sinon on initialise le tableau arrayStock à vide sans lancer l'affichage
-    arrayStock = [];
-  }
-});
+if (localStorage.getItem("keyStock") == null) {
+  // Crée un tableau vide
+  arrayStock = [];
+} else {
+  // Récupérer le tableau stocké en string dans le localStorage
+  arrayStock = JSON.parse(localStorage.getItem("keyStock"));
+  displayProduct(arrayStock);
+}
 
 // Fonctions
 function createProduct(e) {
@@ -78,15 +72,17 @@ function displayProduct(array, type) {
   // On boucle sur le tableau arrayStock
   array.forEach((element, index) => {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
-    li += `<li>${element.name} Stock : ${element.stock} Prix d'achat HT : ${
-      element.buyingPriceHT
-    } Prix de vente HT : ${element.sellingPriceHT} Marge : ${
-      element.margeHT
-    } Prix TTC : ${element.priceTTC} ${
+    li += `<li>${
+      element.name
+    } <input type="number" name="stock" min="0" value="${
+      element.stock
+    }"/> Prix d'achat HT : ${element.buyingPriceHT} Prix de vente HT : ${
+      element.sellingPriceHT
+    } Marge : ${element.margeHT} Prix TTC : ${element.priceTTC} ${
       element.type == "boisson-alcoolise" ? "🔞" : ""
     } ${
       element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
-    } <button class="deleteBtn">Supprimer</button> <button class="editBtn">Editer</button></li>`;
+    } <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button></li>`;
     // Fin de boucle du tableau
   });
   // On affiche productLi dans ulContainer
@@ -100,9 +96,9 @@ function displayProduct(array, type) {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
       // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
-      supprimer(li, deleteBtn);
+      supprimer(index);
 
-      // On raffraichit le composant render
+      // On raffraichit le composant displayProduct
       displayProduct(arrayStock, "all");
     });
   });
@@ -111,16 +107,16 @@ function displayProduct(array, type) {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
       // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
-      modifier(li, editBtn, deleteBtn);
+      modifier();
 
-      // On raffraichit le composant render
+      // On raffraichit le composant displayProduct
       displayProduct(arrayStock, "all");
     });
   });
 }
 
 //FONCTION MODIFIER
-function modifier(li, editBtn, deleteBtn) {
+function modifier() {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
   li.innerHTML = `<input type="text" value=${li.innerValue} class="nameEdit"/>`;
   let nameEdit = document.querySelector(".nameEdit");
@@ -133,9 +129,6 @@ function modifier(li, editBtn, deleteBtn) {
     li.innerText = nameEdit.value;
   });
 
-  // //QUERY SUR L'INPUT POUR LE RÉCUPÉRER ET LE STOCKER DANS updateInput
-  // let updateInput = document.querySelectorAll(".updateInput");
-
   //EVENTLISTENER SUR updateInput TEXT
   nameEdit.addEventListener("keydown", function (eventInfo) {
     if (eventInfo.key == "Enter") {
@@ -147,20 +140,15 @@ function modifier(li, editBtn, deleteBtn) {
       li.appendChild(deleteBtn);
     }
   });
-  // REMPLACEMENT DE L'ANCIEN ARRAY NON MODIFIÉ PAR CELUI QU'ON VIENT D'ÉDITER
-  //render(FonctionConstructeurModifiée);
 }
 
 //FONCTION SUPPRIMER
-function supprimer(li, deleteBtn) {
-  deleteBtn.addEventListener("click", function () {
-    if (confirm("Voulez vous supprimez ?")) {
-      li.remove();
-      //SPLICE arrayStock DU LOCALSTORAGE QUAND LA FONCTION SERA PRÊTE
-      arrayStock.splice(index, 1);
-      localStorage.setItem("keyStock", JSON.stringify(arrayStock));
-    }
-  });
+function supprimer(index) {
+  if (confirm("Voulez vous supprimez ?")) {
+    //SPLICE arrayStock DU LOCALSTORAGE QUAND LA FONCTION SERA PRÊTE
+    arrayStock.splice(index, 1);
+    localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+  }
 }
 
 // Exécution des fonctions
