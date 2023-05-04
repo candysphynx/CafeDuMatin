@@ -40,14 +40,12 @@ function createProduct(e) {
 
   // On enregistre le produit dans le localStorage
   localStorage.setItem("keyStock", JSON.stringify(arrayStock));
-
+  // On efface les inputs de dans le formulaire
+  form.reset();
   // On affiche dans le stock le nouveau produit en appelant la fonction displayProduct
   displayProduct(arrayStock, "all");
 
   stockColor(li);
-
-  // On efface les inputs de dans le formulaire
-  form.reset();
 }
 
 function displayProduct(array, type) {
@@ -59,12 +57,12 @@ function displayProduct(array, type) {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
     li += `<li class="liProduct">${element.name} Prix d'achat HT : ${
       element.buyingPriceHT
-    } Prix de vente HT : ${element.sellingPriceHT} Marge : ${
+    }€ Prix de vente HT : ${element.sellingPriceHT}€ Marge : ${
       element.margeHT
-    } Prix TTC : ${element.priceTTC} ${
+    }€ Prix TTC : ${element.priceTTC}€ ${
       element.type == "boisson-alcoolise" ? "🔞" : ""
     } ${
-      element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
+      element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}%` : ""
     } <input type="number" id="stockID" name="stock" min="0" class=${
       element.stock > 5 ? "high" : "low"
     } value="${
@@ -122,7 +120,7 @@ function modifier(li, liIndex) {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
   li[
     liIndex
-  ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/> <input type="text" value=${arrayStock[liIndex].stock} class="stockEdit"/> <input type="text" value=${arrayStock[liIndex].buyingPriceHT} class="buyingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].sellingPriceHT} class="sellingPriceHTEdit"/> <select name="type" class="typeEdit">
+  ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/> <input type="text" value=${arrayStock[liIndex].buyingPriceHT} class="buyingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].sellingPriceHT} class="sellingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].TVA} class="TVAEdit"/> <select name="type" class="typeEdit">
   <option value=${arrayStock[liIndex].type}>Choisissez un type de boisson</option>
   <option value="boisson-alcoolise">Boisson alcoolisée</option>
   <option value="boisson-non-alcoolise">
@@ -130,9 +128,9 @@ function modifier(li, liIndex) {
   </option>
 </select> <input type="text" value=${arrayStock[liIndex].degres} class="degresEdit"/>`;
   let nameEdit = document.querySelector(".nameEdit");
-  let stockEdit = document.querySelector(".stockEdit");
   let buyingPriceHTEdit = document.querySelector(".buyingPriceHTEdit");
   let sellingPriceHTEdit = document.querySelector(".sellingPriceHTEdit");
+  let TVAEdit = document.querySelector(".TVAEdit");
   let typeEdit = document.querySelector(".typeEdit");
   let degresEdit = document.querySelector(".degresEdit");
 
@@ -142,10 +140,17 @@ function modifier(li, liIndex) {
   validerBtn.innerText = "✅";
 
   validerBtn.addEventListener("click", function () {
+    console.log(arrayStock[liIndex]);
     arrayStock[liIndex].name = nameEdit.value;
-    arrayStock[liIndex].stock = stockEdit.value;
     arrayStock[liIndex].buyingPriceHT = buyingPriceHTEdit.value;
     arrayStock[liIndex].sellingPriceHT = sellingPriceHTEdit.value;
+    arrayStock[liIndex].TVA = TVAEdit.value;
+    arrayStock[liIndex].margeHT =
+      arrayStock[liIndex].sellingPriceHT - arrayStock[liIndex].buyingPriceHT;
+    arrayStock[liIndex].priceTTC = (
+      Number(arrayStock[liIndex].sellingPriceHT) *
+      (1 + Number(arrayStock[liIndex].TVA) / 100)
+    ).toFixed(2);
     arrayStock[liIndex].type = typeEdit.value;
     arrayStock[liIndex].degres = degresEdit.value;
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
@@ -180,10 +185,11 @@ function Product(
 ) {
   this.name = name;
   this.stock = stock;
-  this.buyingPriceHT = buyingPriceHT + "€";
-  this.sellingPriceHT = sellingPriceHT + "€";
-  this.margeHT = sellingPriceHT - buyingPriceHT + "€";
-  this.priceTTC = sellingPriceHT * (1 + TVA / 100) + "€";
+  this.buyingPriceHT = buyingPriceHT;
+  this.sellingPriceHT = sellingPriceHT;
+  this.TVA = TVA;
+  this.margeHT = sellingPriceHT - buyingPriceHT;
+  this.priceTTC = (sellingPriceHT * (1 + TVA / 100)).toFixed(2);
   this.type = type;
-  this.degres = degres + "%";
+  this.degres = degres;
 }
