@@ -62,6 +62,11 @@ function createProduct(e) {
   // On affiche dans le stock le nouveau produit en appelant la fonction displayProduct
   displayProduct(arrayStock, "all");
 
+<<<<<<< Updated upstream
+=======
+  stockColor(li);
+
+>>>>>>> Stashed changes
   // On efface les inputs de dans le formulaire
   form.reset();
 }
@@ -72,6 +77,7 @@ function displayProduct(array, type) {
   // On boucle sur le tableau arrayStock
   array.forEach((element, index) => {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
+<<<<<<< Updated upstream
     li += `<li>${element.name} Prix d'achat HT : ${
       element.buyingPriceHT
     } Prix de vente HT : ${element.sellingPriceHT} Marge : ${
@@ -85,6 +91,30 @@ function displayProduct(array, type) {
     } <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button></li>`;
     // Fin de boucle du tableau
   });
+=======
+    li += `<li class="liProduct">${
+      element.name
+    }  \u00a0 ‖ \u00a0   Prix d'achat HT : ${
+      element.buyingPriceHT
+    }   \u00a0 ‖ \u00a0  Prix de vente HT : ${
+      element.sellingPriceHT
+    }   \u00a0 ‖ \u00a0  Marge : ${
+      element.margeHT
+    }   \u00a0 ‖ \u00a0  Prix TTC : ${element.priceTTC}  \u00a0 ‖ \u00a0   ${
+      element.type == "boisson-alcoolise" ? "🔞" : ""
+    }   \u00a0 ‖ \u00a0  ${
+      element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
+    }   \u00a0 ‖ \u00a0  Stock : <input type="number" name="stock" min="0" class=${
+      element.stock > 5 ? "high" : "low"
+    } value="${
+      element.stock
+    }"/> <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button>
+    </li>`;
+
+    // Fin de boucle du tableau
+  });
+
+>>>>>>> Stashed changes
   // On affiche li dans ulContainer
   ulContainer.innerHTML = li;
 
@@ -118,14 +148,34 @@ function displayProduct(array, type) {
 //FONCTION MODIFIER
 function modifier(li) {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
+<<<<<<< Updated upstream
   li.innerHTML = `<input type="text" value=${li.innerText} class="nameEdit"/>`;
   let nameEdit = document.querySelector(".nameEdit");
+=======
+  li[
+    liIndex
+  ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/> <input type="text" value=${arrayStock[liIndex].stock} class="stockEdit"/> <input type="text" value=${arrayStock[liIndex].buyingPriceHT} class="buyingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].sellingPriceHT} class="sellingPriceHTEdit"/> <select name="type" class="typeEdit">
+  <option value=${arrayStock[liIndex].type}>Choisissez un type de boisson</option>
+  <option value="boisson-alcoolise">Boisson alcoolisée</option>
+  <option value="boisson-non-alcoolise">
+    Boisson non alcoolisée
+  </option>
+</select> <input type="text" value=${arrayStock[liIndex].degres} class="degresEdit"/>`;
+  let nameEdit = document.querySelector(".nameEdit");
+  let stockEdit = document.querySelector(".stockEdit");
+  let buyingPriceHTEdit = document.querySelector(".buyingPriceHTEdit");
+  let sellingPriceHTEdit = document.querySelector(".sellingPriceHTEdit");
+  let typeEdit = document.querySelector(".typeEdit");
+  let degresEdit = document.querySelector(".degresEdit");
+
+>>>>>>> Stashed changes
   let validerBtn = document.createElement("button");
   validerBtn.classList.add("Valider");
 
   li.appendChild(validerBtn);
 
   validerBtn.addEventListener("click", function () {
+<<<<<<< Updated upstream
     li.innerText = nameEdit.value;
   });
 
@@ -138,6 +188,16 @@ function modifier(li) {
       li.appendChild(editBtn);
       li.appendChild(deleteBtn);
     }
+=======
+    arrayStock[liIndex].name = nameEdit.value;
+    arrayStock[liIndex].stock = stockEdit.value;
+    arrayStock[liIndex].buyingPriceHT = buyingPriceHTEdit.value;
+    arrayStock[liIndex].sellingPriceHT = sellingPriceHTEdit.value;
+    arrayStock[liIndex].type = typeEdit.value;
+    arrayStock[liIndex].degres = degresEdit.value;
+    localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+    displayProduct(arrayStock);
+>>>>>>> Stashed changes
   });
 }
 

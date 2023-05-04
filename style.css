@@ -154,7 +154,7 @@ select {
   text-align: center;
   font-size: 0.6rem;
   padding: 8px;
-  width: 6vw;
+  width: 7vw;
   cursor: pointer;
   margin-left: 0.5rem;
 }
@@ -186,7 +186,7 @@ li {
   font-size: 12px;
   width: 95%;
   background-color: whitesmoke;
-  margin-top: 10px;
+  margin-top: 11px;
   padding: 0.7rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -205,4 +205,49 @@ li:hover {
 }
 .deleteBtn {
   float: right;
+}
+
+.high {
+  color: green;
+}
+
+.low {
+  color: red;
+}
+
+.editBtn {
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 6px;
+  width: 3vw;
+  cursor: pointer;
+  margin-top: -6px;
+}
+
+.deleteBtn {
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 6px;
+  width: 3vw;
+  cursor: pointer;
+  margin-top: -6px;
+}
+.Valider {
+  color: none;
+  border: none;
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 5px;
+  width: 2vw;
+  cursor: pointer;
+}
+
+.high {
+  font-size: 0.6rem;
+  padding: 6px;
+  width: 3vw;
+  cursor: pointer;
+  margin-top: -5px;
 }
