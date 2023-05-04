@@ -61,11 +61,13 @@ function displayProduct(array, type) {
       element.sellingPriceHT
     }   \u00a0 ‖ \u00a0  Marge : ${
       element.margeHT
-    }   \u00a0 ‖ \u00a0  Prix TTC : ${element.priceTTC}  \u00a0 ‖ \u00a0   ${
-      element.type == "boisson-alcoolise" ? "🔞" : ""
-    }   \u00a0 ‖ \u00a0  ${
-      element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
-    }   \u00a0 ‖ \u00a0  Stock : <input type="number" name="stock" min="0" class=${
+    }   \u00a0 ‖ \u00a0  Prix TTC : ${element.priceTTC} ${
+      element.type == "boisson-alcoolise" ? "  \u00a0 ‖ \u00a0 🔞" : ""
+    } ${
+      element.type == "boisson-alcoolise"
+        ? `\u00a0 ‖ \u00a0  Degrès : ${element.degres}\u00a0 ‖ \u00a0  `
+        : ""
+    }    \u00a0 ‖ \u00a0 Stock : <input type="number" name="stock" min="0" class=${
       element.stock > 5 ? "high" : "low"
     } value="${
       element.stock

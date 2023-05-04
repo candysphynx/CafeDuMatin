@@ -97,7 +97,7 @@ h2 {
 ul {
   text-align: left;
   color: #0f222d;
-  margin: 1% auto 0px 4%;
+  margin: 1% 1% 0px 1%;
   font-size: 0.7rem;
   list-style-type: none;
   align-content: center;
@@ -185,7 +185,7 @@ button:hover {
 li {
   font-family: "Krona One", sans-serif;
   font-size: 12px;
-  width: 95%;
+  width: 100%;
   background-color: whitesmoke;
   margin-top: 11px;
   padding: 0.7rem;
@@ -251,4 +251,14 @@ li:hover {
   width: 3vw;
   cursor: pointer;
   margin-top: -5px;
+  text-align: center;
+}
+
+.low {
+  font-size: 0.6rem;
+  padding: 0.4em;
+  width: 3vw;
+  cursor: pointer;
+  margin-top: -5px;
+  text-align: center;
 }
