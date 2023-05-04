@@ -1,4 +1,3 @@
-//FONCTION RANGEMENT DES ÉLÉMENTS DU STOCK PAR ORDRE ALPHABÉTIQUE
 // Récupération des éléments du HTML
 let stockContainer = document.querySelector(".stockContainer");
 let addProductContainer = document.querySelector(".addProductContainer");
@@ -109,7 +108,7 @@ function displayProduct(array, type) {
   });
 }
 
-//FONCTION MODIFIER
+// Fonction modifier
 function modifier(li, liIndex) {
   // Apparition des inputs après click sur btn modifier
   li[
@@ -139,7 +138,7 @@ function modifier(li, liIndex) {
   li[liIndex].appendChild(validerBtn);
   validerBtn.innerText = "✅";
 
-  // eventListener sur le btn valider pour prendre en compte les changements
+  // EventListener sur le btn valider pour prendre en compte les changements
   validerBtn.addEventListener("click", function () {
     console.log(arrayStock[liIndex]);
     arrayStock[liIndex].name = nameEdit.value;
@@ -162,10 +161,10 @@ function modifier(li, liIndex) {
   });
 }
 
-//FONCTION SUPPRIMER
+// Fonction supprimer
 function supprimer(index) {
   if (confirm("Voulez vous supprimez ?")) {
-    //SPLICE arrayStock DU LOCALSTORAGE
+    // Splice arrayStock du localStorage
     arrayStock.splice(index, 1);
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
     // On raffraichit le composant displayProduct
