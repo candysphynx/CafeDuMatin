@@ -40,14 +40,10 @@ function createProduct(e) {
 
   // On enregistre le produit dans le localStorage
   localStorage.setItem("keyStock", JSON.stringify(arrayStock));
-
-  // On affiche dans le stock le nouveau produit en appelant la fonction displayProduct
-  displayProduct(arrayStock, "all");
-
-  stockColor(li);
-
   // On efface les inputs de dans le formulaire
   form.reset();
+  // On affiche dans le stock le nouveau produit en appelant la fonction displayProduct
+  displayProduct(arrayStock, "all");
 }
 
 function displayProduct(array, type) {
@@ -65,16 +61,18 @@ function displayProduct(array, type) {
       element.sellingPriceHT
     }   \u00a0 ‖ \u00a0  Marge : ${
       element.margeHT
-    }   \u00a0 ‖ \u00a0  Prix TTC : ${element.priceTTC}  \u00a0 ‖ \u00a0   ${
-      element.type == "boisson-alcoolise" ? "🔞" : ""
-    }   \u00a0 ‖ \u00a0  ${
-      element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
-    }   \u00a0 ‖ \u00a0  Stock : <input type="number" name="stock" min="0" class=${
+    }   \u00a0 ‖ \u00a0  Prix TTC : ${element.priceTTC} ${
+      element.type == "boisson-alcoolise" ? "  \u00a0 ‖ \u00a0 🔞" : ""
+    } ${
+      element.type == "boisson-alcoolise"
+        ? `\u00a0 ‖ \u00a0  Degrès : ${element.degres}\u00a0 ‖ \u00a0  `
+        : ""
+    }    \u00a0 ‖ \u00a0 Stock : <input type="number" name="stock" min="0" class=${
       element.stock > 5 ? "high" : "low"
     } value="${
       element.stock
     }"/> <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button>
-    </li>`;
+  </li>`;
 
     // Fin de boucle du tableau
   });
@@ -86,6 +84,8 @@ function displayProduct(array, type) {
   let allDeleteButton = document.querySelectorAll(".deleteBtn");
   let allEditButton = document.querySelectorAll(".editBtn");
   let allLiProduct = document.querySelectorAll(".liProduct");
+  let allStockID = document.querySelectorAll(".stockID");
+
   // On commence la boucle des boutons
   allDeleteButton.forEach((element, index) => {
     // Pour chaque bouton je déclenche un event qui:
@@ -102,6 +102,12 @@ function displayProduct(array, type) {
       modifier(allLiProduct, index);
     });
   });
+  allStockID.forEach((element, index) => {
+    element.addEventListener("click", () => {
+      console.log(array[index].stock);
+      // localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+    });
+  });
 }
 
 //FONCTION MODIFIER
@@ -109,19 +115,22 @@ function modifier(li, liIndex) {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
   li[
     liIndex
-  ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/> <input type="text" value=${arrayStock[liIndex].stock} class="stockEdit"/> <input type="text" value=${arrayStock[liIndex].buyingPriceHT} class="buyingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].sellingPriceHT} class="sellingPriceHTEdit"/> <select name="type" class="typeEdit">
+  ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/> <input type="text" value=${arrayStock[liIndex].buyingPriceHT} class="buyingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].sellingPriceHT} class="sellingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].TVA} class="TVAEdit"/> <select name="type" class="typeEdit">
   <option value=${arrayStock[liIndex].type}>Choisissez un type de boisson</option>
   <option value="boisson-alcoolise">Boisson alcoolisée</option>
   <option value="boisson-non-alcoolise">
     Boisson non alcoolisée
   </option>
-</select> <input type="text" value=${arrayStock[liIndex].degres} class="degresEdit"/>`;
+</select> <input type="text" value=${arrayStock[liIndex].degres} class="degresEdit"/>
+<input type="number" name="stock" min="0" class="stockEdit" value="${arrayStock[liIndex].stock}"/> 
+`;
   let nameEdit = document.querySelector(".nameEdit");
-  let stockEdit = document.querySelector(".stockEdit");
   let buyingPriceHTEdit = document.querySelector(".buyingPriceHTEdit");
   let sellingPriceHTEdit = document.querySelector(".sellingPriceHTEdit");
+  let TVAEdit = document.querySelector(".TVAEdit");
   let typeEdit = document.querySelector(".typeEdit");
   let degresEdit = document.querySelector(".degresEdit");
+  let stockEdit = document.querySelector(`.stockEdit`);
 
   let validerBtn = document.createElement("button");
   validerBtn.classList.add("Valider");
@@ -129,13 +138,24 @@ function modifier(li, liIndex) {
   validerBtn.innerText = "✅";
 
   validerBtn.addEventListener("click", function () {
+    console.log(arrayStock[liIndex]);
     arrayStock[liIndex].name = nameEdit.value;
-    arrayStock[liIndex].stock = stockEdit.value;
     arrayStock[liIndex].buyingPriceHT = buyingPriceHTEdit.value;
     arrayStock[liIndex].sellingPriceHT = sellingPriceHTEdit.value;
+    arrayStock[liIndex].TVA = TVAEdit.value;
+    arrayStock[liIndex].margeHT =
+      arrayStock[liIndex].sellingPriceHT - arrayStock[liIndex].buyingPriceHT;
+    arrayStock[liIndex].priceTTC = (
+      Number(arrayStock[liIndex].sellingPriceHT) *
+      (1 + Number(arrayStock[liIndex].TVA) / 100)
+    ).toFixed(2);
     arrayStock[liIndex].type = typeEdit.value;
     arrayStock[liIndex].degres = degresEdit.value;
+    arrayStock[liIndex].stock = stockEdit.value;
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+    console.log(arrayStock[liIndex].stock);
+    // arrayStock[liIndex].stock > 5 ? "high" : "low";
+
     displayProduct(arrayStock);
   });
 }
@@ -167,10 +187,11 @@ function Product(
 ) {
   this.name = name;
   this.stock = stock;
-  this.buyingPriceHT = buyingPriceHT + "€";
-  this.sellingPriceHT = sellingPriceHT + "€";
-  this.margeHT = sellingPriceHT - buyingPriceHT + "€";
-  this.priceTTC = sellingPriceHT * (1 + TVA / 100) + "€";
+  this.buyingPriceHT = buyingPriceHT;
+  this.sellingPriceHT = sellingPriceHT;
+  this.TVA = TVA;
+  this.margeHT = sellingPriceHT - buyingPriceHT;
+  this.priceTTC = (sellingPriceHT * (1 + TVA / 100)).toFixed(2);
   this.type = type;
-  this.degres = degres + "%";
+  this.degres = degres;
 }
