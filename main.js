@@ -53,20 +53,25 @@ function displayProduct(array, type) {
   // On boucle sur le tableau arrayStock
   array.forEach((element, index) => {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
-    li += `<li class="liProduct">${element.name} Prix d'achat HT : ${
+    li += `<li class="liProduct">${
+      element.name
+    }  \u00a0 ‖ \u00a0   Prix d'achat HT : ${
       element.buyingPriceHT
-    }€ Prix de vente HT : ${element.sellingPriceHT}€ Marge : ${
+    }   \u00a0 ‖ \u00a0  Prix de vente HT : ${
+      element.sellingPriceHT
+    }   \u00a0 ‖ \u00a0  Marge : ${
       element.margeHT
-    }€ Prix TTC : ${element.priceTTC}€ ${
+    }   \u00a0 ‖ \u00a0  Prix TTC : ${element.priceTTC}  \u00a0 ‖ \u00a0   ${
       element.type == "boisson-alcoolise" ? "🔞" : ""
-    } ${
-      element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}%` : ""
-    } <input type="number" name="stock" min="0" class=${
+    }   \u00a0 ‖ \u00a0  ${
+      element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
+    }   \u00a0 ‖ \u00a0  Stock : <input type="number" name="stock" min="0" class=${
       element.stock > 5 ? "high" : "low"
     } value="${
       element.stock
     }"/> <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button>
-    </li>`;
+  </li>`;
+
     // Fin de boucle du tableau
   });
 
