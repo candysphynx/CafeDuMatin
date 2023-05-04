@@ -65,7 +65,7 @@ function displayProduct(array, type) {
       element.type == "boisson-alcoolise" ? "  \u00a0 ‖ \u00a0 🔞" : ""
     } ${
       element.type == "boisson-alcoolise"
-        ? `\u00a0 ‖ \u00a0  Degrès : ${element.degres}\u00a0 ‖ \u00a0  `
+        ? `\u00a0 ‖ \u00a0  Degrès : ${element.degres} `
         : ""
     }    \u00a0 ‖ \u00a0 Stock : <input type="number" name="stock" min="0" class=${
       element.stock > 5 ? "high" : "low"
