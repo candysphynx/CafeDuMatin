@@ -65,15 +65,23 @@ function displayProduct(array, type) {
       element.type == "boisson-alcoolise" ? "🔞" : ""
     } ${
       element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
-    } <input type="number" name="stock" min="0" class=${
+    } <input type="number" id="stockID" name="stock" min="0" class=${
       element.stock > 5 ? "high" : "low"
     } value="${
       element.stock
     }"/> <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button>
     </li>`;
-
     // Fin de boucle du tableau
   });
+
+  // let stockID = document.querySelectorAll("#stockID");
+
+  // stockID.forEach((element, index) => {
+  //   element.addEventListener("input");
+  //   {
+  //     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+  //   }
+  // });
 
   // On affiche li dans ulContainer
   ulContainer.innerHTML = li;
@@ -98,6 +106,15 @@ function displayProduct(array, type) {
       modifier(allLiProduct, index);
     });
   });
+
+  // let stockClass = document.querySelectorAll(".stockClass");
+
+  // stockClass.forEach((element, index) => {
+  //   element.addEventListener("input");
+  //   {
+  //     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+  //   }
+  // });
 }
 
 //FONCTION MODIFIER
