@@ -1,21 +1,3 @@
-//FONCTION CHANGER LA COULEUR SELON SI LA BOISSON EST ALCOOLISÉE OU NON
-/* function colorAlcool(li) {
-    switch (alcool.value) {
-        // Si la valeur de l'input alcool est true
-        case "true":
-            // On colore l'élément (juste son nom ?) en rouge
-            li.style.color = "red";
-            break;
-        // Si la valeur de l'input alcool est false
-        case "false":
-            // On colore l'élément (juste son nom ?) en bleu
-            li.style.color = "blue";
-            break;
-        default:
-            break;
-    }
-}*/
-
 //FONCTION RANGEMENT DES ÉLÉMENTS DU STOCK PAR ORDRE ALPHABÉTIQUE
 // Récupération des éléments du HTML
 let stockContainer = document.querySelector(".stockContainer");
@@ -62,11 +44,8 @@ function createProduct(e) {
   // On affiche dans le stock le nouveau produit en appelant la fonction displayProduct
   displayProduct(arrayStock, "all");
 
-<<<<<<< Updated upstream
-=======
   stockColor(li);
 
->>>>>>> Stashed changes
   // On efface les inputs de dans le formulaire
   form.reset();
 }
@@ -74,24 +53,10 @@ function createProduct(e) {
 function displayProduct(array, type) {
   // On crée une ligne vide
   let li = "";
+
   // On boucle sur le tableau arrayStock
   array.forEach((element, index) => {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
-<<<<<<< Updated upstream
-    li += `<li>${element.name} Prix d'achat HT : ${
-      element.buyingPriceHT
-    } Prix de vente HT : ${element.sellingPriceHT} Marge : ${
-      element.margeHT
-    } Prix TTC : ${element.priceTTC} ${
-      element.type == "boisson-alcoolise" ? "🔞" : ""
-    } ${
-      element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
-    } Stock : ${
-      element.stock
-    } <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button></li>`;
-    // Fin de boucle du tableau
-  });
-=======
     li += `<li class="liProduct">${
       element.name
     }  \u00a0 ‖ \u00a0   Prix d'achat HT : ${
@@ -114,44 +79,34 @@ function displayProduct(array, type) {
     // Fin de boucle du tableau
   });
 
->>>>>>> Stashed changes
   // On affiche li dans ulContainer
   ulContainer.innerHTML = li;
 
   // Je récupère tout mes boutons supprimer & edit qui ont été crée juste au dessus
   let allDeleteButton = document.querySelectorAll(".deleteBtn");
   let allEditButton = document.querySelectorAll(".editBtn");
+  let allLiProduct = document.querySelectorAll(".liProduct");
   // On commence la boucle des boutons
   allDeleteButton.forEach((element, index) => {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
       // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
       supprimer(index);
-
-      // On raffraichit le composant displayProduct
-      displayProduct(arrayStock, "all");
     });
   });
   // On commence la boucle des boutons
-  allEditButton.forEach((element, li) => {
+  allEditButton.forEach((element, index) => {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
       // Modifier à l'intérieur du tableau arrayStock l'index selectionné au moment du click
-      modifier(li);
-
-      // On raffraichit le composant displayProduct
-      displayProduct(arrayStock, "all");
+      modifier(allLiProduct, index);
     });
   });
 }
 
 //FONCTION MODIFIER
-function modifier(li) {
+function modifier(li, liIndex) {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
-<<<<<<< Updated upstream
-  li.innerHTML = `<input type="text" value=${li.innerText} class="nameEdit"/>`;
-  let nameEdit = document.querySelector(".nameEdit");
-=======
   li[
     liIndex
   ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/> <input type="text" value=${arrayStock[liIndex].stock} class="stockEdit"/> <input type="text" value=${arrayStock[liIndex].buyingPriceHT} class="buyingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].sellingPriceHT} class="sellingPriceHTEdit"/> <select name="type" class="typeEdit">
@@ -168,27 +123,12 @@ function modifier(li) {
   let typeEdit = document.querySelector(".typeEdit");
   let degresEdit = document.querySelector(".degresEdit");
 
->>>>>>> Stashed changes
   let validerBtn = document.createElement("button");
   validerBtn.classList.add("Valider");
-
-  li.appendChild(validerBtn);
+  li[liIndex].appendChild(validerBtn);
+  validerBtn.innerText = "✅";
 
   validerBtn.addEventListener("click", function () {
-<<<<<<< Updated upstream
-    li.innerText = nameEdit.value;
-  });
-
-  //EVENTLISTENER SUR updateInput TEXT
-  nameEdit.addEventListener("keydown", function (eventInfo) {
-    if (eventInfo.key == "Enter") {
-      //updateInput REMPLIE PAR USER REMPLACE LA BALISE INPUT
-      li.innerText = nameEdit.value;
-      //REPLACEMENT DES BOUTONS DELETE ET EDIT
-      li.appendChild(editBtn);
-      li.appendChild(deleteBtn);
-    }
-=======
     arrayStock[liIndex].name = nameEdit.value;
     arrayStock[liIndex].stock = stockEdit.value;
     arrayStock[liIndex].buyingPriceHT = buyingPriceHTEdit.value;
@@ -197,7 +137,6 @@ function modifier(li) {
     arrayStock[liIndex].degres = degresEdit.value;
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
     displayProduct(arrayStock);
->>>>>>> Stashed changes
   });
 }
 
@@ -207,6 +146,8 @@ function supprimer(index) {
     //SPLICE arrayStock DU LOCALSTORAGE QUAND LA FONCTION SERA PRÊTE
     arrayStock.splice(index, 1);
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+    // On raffraichit le composant displayProduct
+    displayProduct(arrayStock, "all");
   }
 }
 
