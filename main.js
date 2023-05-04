@@ -118,26 +118,39 @@ function modifier(li, liIndex) {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
   li[
     liIndex
-  ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/>`;
+  ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/> <input type="text" value=${arrayStock[liIndex].stock} class="stockEdit"/> <input type="text" value=${arrayStock[liIndex].buyingPriceHT} class="buyingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].sellingPriceHT} class="sellingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].type} class="typeEdit"/> <input type="text" value=${arrayStock[liIndex].degres} class="degresEdit"/>`;
   let nameEdit = document.querySelector(".nameEdit");
+  let stockEdit = document.querySelector(".stockEdit");
+  let buyingPriceHTEdit = document.querySelector(".buyingPriceHTEdit");
+  let sellingPriceHTEdit = document.querySelector(".sellingPriceHTEdit");
+  let typeEdit = document.querySelector(".typeEdit");
+  let degresEdit = document.querySelector(".degresEdit");
+
   let validerBtn = document.createElement("button");
   validerBtn.classList.add("Valider");
-
   li[liIndex].appendChild(validerBtn);
+  validerBtn.innerText = "✅";
 
   validerBtn.addEventListener("click", function () {
-    li[liIndex].innerText = nameEdit.value;
+    arrayStock[liIndex].name = nameEdit.value;
+    arrayStock[liIndex].stock = stockEdit.value;
+    arrayStock[liIndex].buyingPriceHT = buyingPriceHTEdit.value;
+    arrayStock[liIndex].sellingPriceHT = sellingPriceHTEdit.value;
+    arrayStock[liIndex].type = typeEdit.value;
+    arrayStock[liIndex].degres = degresEdit.value;
+    localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+    displayProduct(arrayStock);
   });
 
-  //EVENTLISTENER SUR updateInput TEXT
-  nameEdit.addEventListener("keydown", function (eventInfo) {
-    if (eventInfo.key == "Enter") {
-      //updateInput REMPLIE PAR USER REMPLACE LA BALISE INPUT
-      arrayStock[liIndex].name = nameEdit.value;
-      displayProduct(arrayStock);
-      li[liIndex].innerText = nameEdit.value;
-    }
-  });
+  // //VALIDER AVEC ENTRER
+  // nameEdit.addEventListener("keydown", function (eventInfo) {
+  //   if (eventInfo.key == "Enter") {
+  //     //updateInput REMPLIE PAR USER REMPLACE LA BALISE INPUT
+  //     arrayStock[liIndex].name = nameEdit.value;
+  //     displayProduct(arrayStock);
+  //     li[liIndex].innerText = nameEdit.value;
+  //   }
+  // });
 }
 
 //FONCTION SUPPRIMER
