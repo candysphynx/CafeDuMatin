@@ -151,6 +151,9 @@ function modifier(li, liIndex) {
     arrayStock[liIndex].degres = degresEdit.value;
     arrayStock[liIndex].stock = stockEdit.value;
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+    console.log(arrayStock[liIndex].stock);
+    // arrayStock[liIndex].stock > 5 ? "high" : "low";
+
     displayProduct(arrayStock);
   });
 }
