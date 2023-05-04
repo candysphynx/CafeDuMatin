@@ -61,7 +61,7 @@ function displayProduct(array, type) {
       element.type == "boisson-alcoolise" ? "🔞" : ""
     } ${
       element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}%` : ""
-    } <input type="number" id="stockID" name="stock" min="0" class=${
+    } <input type="number" name="stock" min="0" class=${
       element.stock > 5 ? "high" : "low"
     } value="${
       element.stock
@@ -70,12 +70,15 @@ function displayProduct(array, type) {
     // Fin de boucle du tableau
   });
 
+  // On affiche li dans ulContainer
   ulContainer.innerHTML = li;
 
-  // Je récupère tout mes boutons supprimer & edit qui ont été créés juste au dessus
+  // Je récupère tout mes boutons supprimer & edit qui ont été crée juste au dessus
   let allDeleteButton = document.querySelectorAll(".deleteBtn");
   let allEditButton = document.querySelectorAll(".editBtn");
   let allLiProduct = document.querySelectorAll(".liProduct");
+  let allStockID = document.querySelectorAll(".stockID");
+
   // On commence la boucle des boutons
   allDeleteButton.forEach((element, index) => {
     // Pour chaque bouton je déclenche un event qui:
@@ -91,13 +94,11 @@ function displayProduct(array, type) {
       // Modifier à l'intérieur du tableau arrayStock l'index selectionné au moment du click
       modifier(allLiProduct, index);
     });
-
-    let stockID = document.querySelectorAll("#stockID");
-
-    stockID.forEach((element, index) => {
-      element.addEventListener("input", function () {
-        localStorage.setItem("keyStock", JSON.stringify(arrayStock));
-      });
+  });
+  allStockID.forEach((element, index) => {
+    element.addEventListener("click", () => {
+      console.log(array[index].stock);
+      // localStorage.setItem("keyStock", JSON.stringify(arrayStock));
     });
   });
 }
