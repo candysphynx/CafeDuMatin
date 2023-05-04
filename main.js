@@ -40,14 +40,12 @@ function createProduct(e) {
 
   // On enregistre le produit dans le localStorage
   localStorage.setItem("keyStock", JSON.stringify(arrayStock));
-
+  // On efface les inputs de dans le formulaire
+  form.reset();
   // On affiche dans le stock le nouveau produit en appelant la fonction displayProduct
   displayProduct(arrayStock, "all");
 
   stockColor(li);
-
-  // On efface les inputs de dans le formulaire
-  form.reset();
 }
 
 function displayProduct(array, type) {
