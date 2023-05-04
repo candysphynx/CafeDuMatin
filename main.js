@@ -40,12 +40,15 @@ function createProduct(e) {
 
   // On enregistre le produit dans le localStorage
   localStorage.setItem("keyStock", JSON.stringify(arrayStock));
-  // On efface les inputs de dans le formulaire
+
+  // On efface les inputs du formulaire
   form.reset();
+
   // On affiche dans le stock le nouveau produit en appelant la fonction displayProduct
   displayProduct(arrayStock, "all");
 }
 
+// Fonction displayProduct pour afficher le tableau dans une li
 function displayProduct(array, type) {
   // On crée une ligne vide
   let li = "";
@@ -62,12 +65,15 @@ function displayProduct(array, type) {
     }   \u00a0 ‖ \u00a0  Marge : ${
       element.margeHT
     }   \u00a0 ‖ \u00a0  Prix TTC : ${element.priceTTC} ${
+      // Si la boisson est alcoolisée, on affiche l'emoji -18 ans
       element.type == "boisson-alcoolise" ? "  \u00a0 ‖ \u00a0 🔞" : ""
     } ${
+      // Si la boisson est alcoolisée, on affiche le degré d'alcool
       element.type == "boisson-alcoolise"
         ? `\u00a0 ‖ \u00a0  Degrès : ${element.degres} `
         : ""
     }    \u00a0 ‖ \u00a0 Stock : <input type="number" name="stock" min="0" class=${
+      // Modification de la couleur du stock
       element.stock > 5 ? "high" : "low"
     } value="${
       element.stock
@@ -80,39 +86,32 @@ function displayProduct(array, type) {
   // On affiche li dans ulContainer
   ulContainer.innerHTML = li;
 
-  // Je récupère tout mes boutons supprimer & edit qui ont été crée juste au dessus
+  // On récupère les éléments créés dans la li
   let allDeleteButton = document.querySelectorAll(".deleteBtn");
   let allEditButton = document.querySelectorAll(".editBtn");
   let allLiProduct = document.querySelectorAll(".liProduct");
-  let allStockID = document.querySelectorAll(".stockID");
 
-  // On commence la boucle des boutons
+  // On commence la boucle des boutons supprimer
   allDeleteButton.forEach((element, index) => {
-    // Pour chaque bouton je déclenche un event qui:
+    // Pour chaque bouton je déclenche un event qui :
     element.addEventListener("click", () => {
-      // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
+      // Supprime à l'intérieur du tableau arrayStock l'index selectionné au moment du click
       supprimer(index);
     });
   });
-  // On commence la boucle des boutons
+  // On commence la boucle des boutons modifier
   allEditButton.forEach((element, index) => {
-    // Pour chaque bouton je déclenche un event qui:
+    // Pour chaque bouton je déclenche un event qui :
     element.addEventListener("click", () => {
-      // Modifier à l'intérieur du tableau arrayStock l'index selectionné au moment du click
+      // Modifie l'index selectionné au moment du click à l'intérieur du tableau arrayStock
       modifier(allLiProduct, index);
-    });
-  });
-  allStockID.forEach((element, index) => {
-    element.addEventListener("click", () => {
-      console.log(array[index].stock);
-      // localStorage.setItem("keyStock", JSON.stringify(arrayStock));
     });
   });
 }
 
 //FONCTION MODIFIER
 function modifier(li, liIndex) {
-  //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
+  // Apparition des inputs après click sur btn modifier
   li[
     liIndex
   ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/> <input type="text" value=${arrayStock[liIndex].buyingPriceHT} class="buyingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].sellingPriceHT} class="sellingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].TVA} class="TVAEdit"/> <select name="type" class="typeEdit">
@@ -124,6 +123,8 @@ function modifier(li, liIndex) {
 </select> <input type="text" value=${arrayStock[liIndex].degres} class="degresEdit"/>
 <input type="number" name="stock" min="0" class="stockEdit" value="${arrayStock[liIndex].stock}"/> 
 `;
+
+  // On récupère les variables modifiées
   let nameEdit = document.querySelector(".nameEdit");
   let buyingPriceHTEdit = document.querySelector(".buyingPriceHTEdit");
   let sellingPriceHTEdit = document.querySelector(".sellingPriceHTEdit");
@@ -132,11 +133,13 @@ function modifier(li, liIndex) {
   let degresEdit = document.querySelector(".degresEdit");
   let stockEdit = document.querySelector(`.stockEdit`);
 
+  // On crée le btn valider pour les modifications
   let validerBtn = document.createElement("button");
   validerBtn.classList.add("Valider");
   li[liIndex].appendChild(validerBtn);
   validerBtn.innerText = "✅";
 
+  // eventListener sur le btn valider pour prendre en compte les changements
   validerBtn.addEventListener("click", function () {
     console.log(arrayStock[liIndex]);
     arrayStock[liIndex].name = nameEdit.value;
@@ -154,8 +157,7 @@ function modifier(li, liIndex) {
     arrayStock[liIndex].stock = stockEdit.value;
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
     console.log(arrayStock[liIndex].stock);
-    // arrayStock[liIndex].stock > 5 ? "high" : "low";
-
+    // On réactualise l'affiche de la li modifiée
     displayProduct(arrayStock);
   });
 }
@@ -163,7 +165,7 @@ function modifier(li, liIndex) {
 //FONCTION SUPPRIMER
 function supprimer(index) {
   if (confirm("Voulez vous supprimez ?")) {
-    //SPLICE arrayStock DU LOCALSTORAGE QUAND LA FONCTION SERA PRÊTE
+    //SPLICE arrayStock DU LOCALSTORAGE
     arrayStock.splice(index, 1);
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
     // On raffraichit le composant displayProduct
@@ -171,7 +173,6 @@ function supprimer(index) {
   }
 }
 
-// Exécution des fonctions
 // Lors du clic sur le bouton Ajouter Produit, appelle la fonction createProduct
 form.addEventListener("submit", createProduct);
 
