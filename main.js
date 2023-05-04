@@ -85,6 +85,9 @@ function displayProduct(array, type) {
     }"/> <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button></li>`;
     // Fin de boucle du tableau
   });
+
+  colorStock();
+
   // On affiche li dans ulContainer
   ulContainer.innerHTML = li;
 
@@ -144,6 +147,13 @@ function modifier(li, liIndex) {
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
     displayProduct(arrayStock);
   });
+}
+
+//FONCTION CHANGEMENT DE LA COULEUR DU STOCK
+function colorStock(li) {
+  if (stock.value < 5) {
+    li.style.color = "red";
+  }
 }
 
 //FONCTION SUPPRIMER
