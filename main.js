@@ -119,13 +119,16 @@ function modifier(li, liIndex) {
   <option value="boisson-non-alcoolise">
     Boisson non alcoolisée
   </option>
-</select> <input type="text" value=${arrayStock[liIndex].degres} class="degresEdit"/>`;
+</select> <input type="text" value=${arrayStock[liIndex].degres} class="degresEdit"/>
+<input type="number" name="stock" min="0" class="stockEdit" value="${arrayStock[liIndex].stock}"/> 
+`;
   let nameEdit = document.querySelector(".nameEdit");
   let buyingPriceHTEdit = document.querySelector(".buyingPriceHTEdit");
   let sellingPriceHTEdit = document.querySelector(".sellingPriceHTEdit");
   let TVAEdit = document.querySelector(".TVAEdit");
   let typeEdit = document.querySelector(".typeEdit");
   let degresEdit = document.querySelector(".degresEdit");
+  let stockEdit = document.querySelector(`.stockEdit`);
 
   let validerBtn = document.createElement("button");
   validerBtn.classList.add("Valider");
@@ -146,6 +149,7 @@ function modifier(li, liIndex) {
     ).toFixed(2);
     arrayStock[liIndex].type = typeEdit.value;
     arrayStock[liIndex].degres = degresEdit.value;
+    arrayStock[liIndex].stock = stockEdit.value;
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
     displayProduct(arrayStock);
   });
