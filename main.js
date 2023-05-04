@@ -72,7 +72,7 @@ function displayProduct(array, type) {
   // On boucle sur le tableau arrayStock
   array.forEach((element, index) => {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
-    li += `<li>${element.name} Prix d'achat HT : ${
+    li += `<li class="liProduct">${element.name} Prix d'achat HT : ${
       element.buyingPriceHT
     } Prix de vente HT : ${element.sellingPriceHT} Marge : ${
       element.margeHT
@@ -91,6 +91,7 @@ function displayProduct(array, type) {
   // Je récupère tout mes boutons supprimer & edit qui ont été crée juste au dessus
   let allDeleteButton = document.querySelectorAll(".deleteBtn");
   let allEditButton = document.querySelectorAll(".editBtn");
+  let allLiProduct = document.querySelectorAll(".liProduct");
   // On commence la boucle des boutons
   allDeleteButton.forEach((element, index) => {
     // Pour chaque bouton je déclenche un event qui:
@@ -107,33 +108,34 @@ function displayProduct(array, type) {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
       // Modifier à l'intérieur du tableau arrayStock l'index selectionné au moment du click
-      modifier(li);
+      modifier(allLiProduct, index);
     });
   });
 }
 
 //FONCTION MODIFIER
-function modifier(li) {
+function modifier(li, liIndex) {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
-  li.innerHTML = `<input type="text" value=${li.innerText} class="nameEdit"/>`;
+  li[
+    liIndex
+  ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/>`;
   let nameEdit = document.querySelector(".nameEdit");
   let validerBtn = document.createElement("button");
   validerBtn.classList.add("Valider");
 
-  li.appendChild(validerBtn);
+  li[liIndex].appendChild(validerBtn);
 
   validerBtn.addEventListener("click", function () {
-    li.innerText = nameEdit.value;
+    li[liIndex].innerText = nameEdit.value;
   });
 
   //EVENTLISTENER SUR updateInput TEXT
   nameEdit.addEventListener("keydown", function (eventInfo) {
     if (eventInfo.key == "Enter") {
       //updateInput REMPLIE PAR USER REMPLACE LA BALISE INPUT
-      li.innerText = nameEdit.value;
-      //REPLACEMENT DES BOUTONS DELETE ET EDIT
-      li.appendChild(editBtn);
-      li.appendChild(deleteBtn);
+      arrayStock[liIndex].name = nameEdit.value;
+      displayProduct(arrayStock);
+      li[liIndex].innerText = nameEdit.value;
     }
   });
 }
