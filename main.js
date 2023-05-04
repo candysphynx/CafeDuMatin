@@ -44,8 +44,6 @@ function createProduct(e) {
   form.reset();
   // On affiche dans le stock le nouveau produit en appelant la fonction displayProduct
   displayProduct(arrayStock, "all");
-
-  stockColor(li);
 }
 
 function displayProduct(array, type) {
@@ -72,19 +70,9 @@ function displayProduct(array, type) {
     // Fin de boucle du tableau
   });
 
-  // let stockID = document.querySelectorAll("#stockID");
-
-  // stockID.forEach((element, index) => {
-  //   element.addEventListener("input");
-  //   {
-  //     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
-  //   }
-  // });
-
-  // On affiche li dans ulContainer
   ulContainer.innerHTML = li;
 
-  // Je récupère tout mes boutons supprimer & edit qui ont été crée juste au dessus
+  // Je récupère tout mes boutons supprimer & edit qui ont été créés juste au dessus
   let allDeleteButton = document.querySelectorAll(".deleteBtn");
   let allEditButton = document.querySelectorAll(".editBtn");
   let allLiProduct = document.querySelectorAll(".liProduct");
@@ -103,16 +91,15 @@ function displayProduct(array, type) {
       // Modifier à l'intérieur du tableau arrayStock l'index selectionné au moment du click
       modifier(allLiProduct, index);
     });
+
+    let stockID = document.querySelectorAll("#stockID");
+
+    stockID.forEach((element, index) => {
+      element.addEventListener("input", function () {
+        localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+      });
+    });
   });
-
-  // let stockClass = document.querySelectorAll(".stockClass");
-
-  // stockClass.forEach((element, index) => {
-  //   element.addEventListener("input");
-  //   {
-  //     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
-  //   }
-  // });
 }
 
 //FONCTION MODIFIER
