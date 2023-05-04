@@ -64,15 +64,10 @@ function displayProduct(array, type) {
     }€ Prix TTC : ${element.priceTTC}€ ${
       element.type == "boisson-alcoolise" ? "🔞" : ""
     } ${
-<<<<<<< HEAD
       element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}%` : ""
-    } <input type="number" name="stock" min="0" value="${
-=======
-      element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
     } <input type="number" name="stock" min="0" class=${
       element.stock > 5 ? "high" : "low"
     } value="${
->>>>>>> 56a49d9ee5b082bd20db234d8e3a9f549949a814
       element.stock
     }"/> <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button>
     </li>`;
