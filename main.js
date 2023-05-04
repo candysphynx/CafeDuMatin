@@ -103,14 +103,11 @@ function displayProduct(array, type) {
     });
   });
   // On commence la boucle des boutons
-  allEditButton.forEach((element, li) => {
+  allEditButton.forEach((element, index) => {
     // Pour chaque bouton je déclenche un event qui:
     element.addEventListener("click", () => {
       // Modifier à l'intérieur du tableau arrayStock l'index selectionné au moment du click
       modifier(li);
-
-      // On raffraichit le composant displayProduct
-      displayProduct(arrayStock, "all");
     });
   });
 }
