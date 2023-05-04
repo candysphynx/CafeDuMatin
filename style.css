@@ -206,3 +206,11 @@ li:hover {
 .deleteBtn {
   float: right;
 }
+
+.high {
+  color: green;
+}
+
+.low {
+  color: red;
+}
