@@ -98,9 +98,6 @@ function displayProduct(array, type) {
     element.addEventListener("click", () => {
       // Supprimer à l'intérieur du tableau arrayStock l'index selectionné au moment du click
       supprimer(index);
-
-      // On raffraichit le composant displayProduct
-      displayProduct(arrayStock, "all");
     });
   });
   // On commence la boucle des boutons
@@ -118,7 +115,13 @@ function modifier(li, liIndex) {
   //CRÉATION D'UN INPUT TEXT AVEC UNE CLASSE updateInput À L'INTÉRIEUR DE LA LISTE
   li[
     liIndex
-  ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/> <input type="text" value=${arrayStock[liIndex].stock} class="stockEdit"/> <input type="text" value=${arrayStock[liIndex].buyingPriceHT} class="buyingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].sellingPriceHT} class="sellingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].type} class="typeEdit"/> <input type="text" value=${arrayStock[liIndex].degres} class="degresEdit"/>`;
+  ].innerHTML = `<input type="text" value=${arrayStock[liIndex].name} class="nameEdit"/> <input type="text" value=${arrayStock[liIndex].stock} class="stockEdit"/> <input type="text" value=${arrayStock[liIndex].buyingPriceHT} class="buyingPriceHTEdit"/> <input type="text" value=${arrayStock[liIndex].sellingPriceHT} class="sellingPriceHTEdit"/> <select name="type" class="typeEdit">
+  <option value=${arrayStock[liIndex].type}>Choisissez un type de boisson</option>
+  <option value="boisson-alcoolise">Boisson alcoolisée</option>
+  <option value="boisson-non-alcoolise">
+    Boisson non alcoolisée
+  </option>
+</select> <input type="text" value=${arrayStock[liIndex].degres} class="degresEdit"/>`;
   let nameEdit = document.querySelector(".nameEdit");
   let stockEdit = document.querySelector(".stockEdit");
   let buyingPriceHTEdit = document.querySelector(".buyingPriceHTEdit");
@@ -141,16 +144,6 @@ function modifier(li, liIndex) {
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
     displayProduct(arrayStock);
   });
-
-  // //VALIDER AVEC ENTRER
-  // nameEdit.addEventListener("keydown", function (eventInfo) {
-  //   if (eventInfo.key == "Enter") {
-  //     //updateInput REMPLIE PAR USER REMPLACE LA BALISE INPUT
-  //     arrayStock[liIndex].name = nameEdit.value;
-  //     displayProduct(arrayStock);
-  //     li[liIndex].innerText = nameEdit.value;
-  //   }
-  // });
 }
 
 //FONCTION SUPPRIMER
@@ -159,6 +152,8 @@ function supprimer(index) {
     //SPLICE arrayStock DU LOCALSTORAGE QUAND LA FONCTION SERA PRÊTE
     arrayStock.splice(index, 1);
     localStorage.setItem("keyStock", JSON.stringify(arrayStock));
+    // On raffraichit le composant displayProduct
+    displayProduct(arrayStock, "all");
   }
 }
 
