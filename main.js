@@ -1,21 +1,3 @@
-//FONCTION CHANGER LA COULEUR SELON SI LA BOISSON EST ALCOOLISÉE OU NON
-/* function colorAlcool(li) {
-    switch (alcool.value) {
-        // Si la valeur de l'input alcool est true
-        case "true":
-            // On colore l'élément (juste son nom ?) en rouge
-            li.style.color = "red";
-            break;
-        // Si la valeur de l'input alcool est false
-        case "false":
-            // On colore l'élément (juste son nom ?) en bleu
-            li.style.color = "blue";
-            break;
-        default:
-            break;
-    }
-}*/
-
 //FONCTION RANGEMENT DES ÉLÉMENTS DU STOCK PAR ORDRE ALPHABÉTIQUE
 // Récupération des éléments du HTML
 let stockContainer = document.querySelector(".stockContainer");
@@ -62,6 +44,8 @@ function createProduct(e) {
   // On affiche dans le stock le nouveau produit en appelant la fonction displayProduct
   displayProduct(arrayStock, "all");
 
+  stockColor(li);
+
   // On efface les inputs de dans le formulaire
   form.reset();
 }
@@ -69,6 +53,7 @@ function createProduct(e) {
 function displayProduct(array, type) {
   // On crée une ligne vide
   let li = "";
+
   // On boucle sur le tableau arrayStock
   array.forEach((element, index) => {
     // Pour chaque produit de arrayStock, on crée une ligne correspondante
@@ -79,12 +64,22 @@ function displayProduct(array, type) {
     }€ Prix TTC : ${element.priceTTC}€ ${
       element.type == "boisson-alcoolise" ? "🔞" : ""
     } ${
+<<<<<<< HEAD
       element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}%` : ""
     } <input type="number" name="stock" min="0" value="${
+=======
+      element.type == "boisson-alcoolise" ? `Degrès : ${element.degres}` : ""
+    } <input type="number" name="stock" min="0" class=${
+      element.stock > 5 ? "high" : "low"
+    } value="${
+>>>>>>> 56a49d9ee5b082bd20db234d8e3a9f549949a814
       element.stock
-    }"/> <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button></li>`;
+    }"/> <button class="deleteBtn">❌</button> <button class="editBtn">✏️</button>
+    </li>`;
+
     // Fin de boucle du tableau
   });
+
   // On affiche li dans ulContainer
   ulContainer.innerHTML = li;
 
